@@ -1,12 +1,12 @@
 import { Store, UtensilsCrossed, Hotel, HeartPulse, Sparkles, Building2 } from 'lucide-react'
 
 const items = [
-  { icon: Store, label: 'Belleza y Bienestar' },
-  { icon: UtensilsCrossed, label: 'Restaurantes' },
-  { icon: HeartPulse, label: 'Salud' },
-  { icon: Building2, label: 'Auron Suite' },
-  { icon: Hotel, label: 'Hospitality' },
-  { icon: Sparkles, label: 'Restaurant OS' },
+  { icon: Store, label: 'Beauty Edition' },
+  { icon: UtensilsCrossed, label: 'Restaurant Edition' },
+  { icon: HeartPulse, label: 'Medical Edition' },
+  { icon: Building2, label: 'AURON Suite' },
+  { icon: Hotel, label: 'Hospitality Edition' },
+  { icon: Sparkles, label: 'Un núcleo compartido' },
 ]
 
 function Track() {

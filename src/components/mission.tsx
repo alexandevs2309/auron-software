@@ -42,7 +42,7 @@ export function Mission() {
             className="inline-block text-xs font-semibold tracking-widest uppercase mb-4"
             style={{ color: 'var(--auron-accent-text)' }}
           >
-            Por qué Auron
+            Por qué AURON Suite
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -53,7 +53,7 @@ export function Mission() {
             Una plataforma.
             <br />
             <span className="font-display italic" style={{ color: 'var(--auron-accent-text)' }}>
-              Posibilidades infinitas.
+              Múltiples Editions.
             </span>
           </motion.h2>
           <motion.p
@@ -62,9 +62,9 @@ export function Mission() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-base md:text-lg text-[var(--auron-text-secondary)] leading-relaxed"
           >
-            Auron Software construye plataformas de grado empresarial que potencian negocios
-            en República Dominicana. Nuestro ecosistema unificado permite que cada producto
-            funcione en conjunto, compartiendo datos, autenticación e infraestructura.
+            AURON Suite es la plataforma que agrupa todas las Editions de Auron Software:
+            Beauty Edition, Restaurant OS, Health y Hospitality.
+            Cada Edition funciona sobre un núcleo compartido — datos, autenticación e infraestructura unificados.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -72,8 +72,8 @@ export function Mission() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-4 text-base md:text-lg text-[var(--auron-text-secondary)] leading-relaxed"
           >
-            Ya sea que necesites un POS para restaurantes, una plataforma hotelera o software
-            a la medida — Auron entrega.
+            Ya sea que necesites gestión para salones, un POS para restaurantes,
+            una plataforma clínica u hotelera — AURON Suite tiene una Edition para tu rubro.
           </motion.p>
         </div>
 

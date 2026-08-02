@@ -17,10 +17,10 @@ const kpis = [
 ]
 
 const portfolio = [
-  { icon: Building2, name: 'Auron Suite', status: 'En operación', live: true, gradient: 'linear-gradient(135deg, #1A56DB, #123F9E)' },
-  { icon: UtensilsCrossed, name: 'Auron Restaurant OS', status: 'En desarrollo', live: false, gradient: 'linear-gradient(135deg, #10b981, #059669)' },
-  { icon: Hotel, name: 'Auron Hospitality', status: 'En desarrollo', live: false, gradient: 'linear-gradient(135deg, #D97706, #9A5B0A)' },
-  { icon: HeartPulse, name: 'Auron Health', status: 'En operación', live: true, gradient: 'linear-gradient(135deg, #f43f5e, #e11d48)' },
+  { icon: Building2, name: 'Beauty Edition', status: 'En operación', live: true, gradient: 'linear-gradient(135deg, #1A56DB, #123F9E)' },
+  { icon: UtensilsCrossed, name: 'Restaurant Edition', status: 'En desarrollo', live: false, gradient: 'linear-gradient(135deg, #10b981, #059669)' },
+  { icon: Hotel, name: 'Hospitality Edition', status: 'En desarrollo', live: false, gradient: 'linear-gradient(135deg, #D97706, #9A5B0A)' },
+  { icon: HeartPulse, name: 'Medical Edition', status: 'Planeado', live: false, gradient: 'linear-gradient(135deg, #f43f5e, #e11d48)' },
 ]
 
 const bars = [42, 58, 46, 70, 62, 84, 76, 92, 68, 54, 80, 88]
@@ -33,7 +33,7 @@ export function HubMockup({ gradient = 'linear-gradient(135deg, #1A56DB, #123F9E
         <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f59e0b', opacity: 0.85 }} />
         <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#10b981', opacity: 0.85 }} />
         <span className="ml-3 flex-1 max-w-[240px] truncate rounded-md px-3 py-1 text-[10px] text-[var(--auron-text-secondary)] bg-[var(--auron-bg-tertiary)]">
-          auronsoftware.do
+          auronsuite.com
         </span>
       </div>
 
@@ -60,7 +60,7 @@ export function HubMockup({ gradient = 'linear-gradient(135deg, #1A56DB, #123F9E
           <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-[var(--auron-border-light)]">
             <div>
               <div className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--auron-accent-text)' }}>Hub corporativo</div>
-              <div className="text-xs font-semibold text-[var(--auron-text)]">Auron Software</div>
+              <div className="text-xs font-semibold text-[var(--auron-text)]">AURON Suite</div>
             </div>
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1.5 rounded-lg border border-[var(--auron-border)] bg-[var(--auron-bg-secondary)] px-2 py-1 text-[10px] text-[var(--auron-text-tertiary)]">

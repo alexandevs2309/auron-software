@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://auronsoftware.do/sitemap.xml
+Host: https://auronsuite.com
+Sitemap: https://auronsuite.com/sitemap.xml

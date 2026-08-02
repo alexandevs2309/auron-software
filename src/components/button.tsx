@@ -2,12 +2,18 @@ import { forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   children: React.ReactNode
   as?: 'button' | 'a'
   href?: string
+  target?: string
+  rel?: string
+  className?: string
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const sizeClasses = {
@@ -28,7 +34,7 @@ const variantClasses = {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', children, as = 'button', href, ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', children, as = 'button', href, target, rel, type = 'button', ...props }, ref) => {
     const classes = cn(
       'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--auron-accent)] focus-visible:ring-offset-2',
@@ -40,14 +46,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (as === 'a' && href) {
       return (
-        <motion.a href={href} className={classes} whileHover={{ y: -1 }} whileTap={{ y: 0 }}>
+        <motion.a
+          href={href}
+          target={target}
+          rel={rel}
+          className={classes}
+          whileHover={{ y: -1 }}
+          whileTap={{ y: 0 }}
+        >
           {children}
         </motion.a>
       )
     }
 
     return (
-      <motion.button ref={ref} className={classes} whileHover={{ y: -1 }} whileTap={{ y: 0 }} {...(props as any)}>
+      <motion.button ref={ref} type={type} className={classes} whileHover={{ y: -1 }} whileTap={{ y: 0 }} {...props}>
         {children}
       </motion.button>
     )

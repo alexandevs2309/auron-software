@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom'
 import { Container } from './container'
 
-const footerLinks = {
-  Productos: [
-    { label: 'Auron Suite', href: '/products#suite' },
-    { label: 'Auron Restaurant OS', href: '/products#restaurant' },
-    { label: 'Auron Hospitality', href: '/products#hospitality' },
-    { label: 'Auron Health', href: '/products#health' },
+interface FooterLink {
+  label: string
+  href: string
+  external?: boolean
+}
+
+const footerLinks: Record<string, FooterLink[]> = {
+  Ediciones: [
+    { label: 'Beauty Edition', href: 'https://app.auronsuite.com', external: true },
+    { label: 'Restaurant Edition', href: '/products#restaurant' },
+    { label: 'Hospitality Edition', href: '/products#hospitality' },
+    { label: 'Medical Edition', href: '/products#health' },
+    { label: 'Retail Edition', href: '/products#retail' },
   ],
   Servicios: [
     { label: 'Desarrollo a la medida', href: '/services#custom' },
@@ -36,7 +43,7 @@ export function Footer() {
               <div className="w-7 h-7 rounded-lg bg-[var(--auron-accent)] flex items-center justify-center">
                 <span className="text-white font-bold text-xs">A</span>
               </div>
-              <span className="font-semibold text-base text-[var(--auron-text)]">Auron</span>
+              <span className="font-semibold text-base text-[var(--auron-text)]">AURON Suite</span>
             </Link>
             <p className="text-sm text-[var(--auron-text-secondary)] leading-relaxed max-w-xs">
               Software empresarial para negocios modernos. Construyendo el futuro de la tecnología de negocio.
@@ -48,9 +55,20 @@ export function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link to={link.href} className="auron-focus-ring text-sm text-[var(--auron-text-secondary)] hover:text-[var(--auron-accent-text)] transition-colors">
-                      {link.label}
-                    </Link>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="auron-focus-ring text-sm text-[var(--auron-text-secondary)] hover:text-[var(--auron-accent-text)] transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link to={link.href} className="auron-focus-ring text-sm text-[var(--auron-text-secondary)] hover:text-[var(--auron-accent-text)] transition-colors">
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -58,7 +76,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-16 pt-8 border-t border-[var(--auron-border-light)] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[var(--auron-text-tertiary)]">&copy; {new Date().getFullYear()} Auron Software. Todos los derechos reservados.</p>
+          <p className="text-xs text-[var(--auron-text-tertiary)]">&copy; {new Date().getFullYear()} Auron Suite EIRL. Todos los derechos reservados.</p>
         </div>
       </Container>
     </footer>

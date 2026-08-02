@@ -1,4 +1,4 @@
-import { StrictMode, lazy } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
@@ -15,25 +15,29 @@ const BlogPage = lazy(() => import('./pages/Blog').then(m => ({ default: m.BlogP
 const PrivacyPage = lazy(() => import('./pages/Legal').then(m => ({ default: m.PrivacyPage })))
 const TermsPage = lazy(() => import('./pages/Legal').then(m => ({ default: m.TermsPage })))
 const SecurityPage = lazy(() => import('./pages/Legal').then(m => ({ default: m.SecurityPage })))
+const ComingSoonPage = lazy(() => import('./pages/ComingSoon').then(m => ({ default: m.ComingSoonPage })))
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MotionConfig reducedMotion="user">
       <ThemeProvider>
         <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/privacy" element={<PrivacyPage />} />
-              <Route path="/terms" element={<TermsPage />} />
-              <Route path="/security" element={<SecurityPage />} />
-            </Route>
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/coming-soon" element={<ComingSoonPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
+                <Route path="/security" element={<SecurityPage />} />
+              </Route>
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </ThemeProvider>
     </MotionConfig>

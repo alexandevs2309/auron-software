@@ -9,7 +9,7 @@ interface SeoProps {
   jsonLd?: object | object[]
 }
 
-const SITE_URL = 'https://auronsoftware.do'
+const SITE_URL = 'https://auronsuite.com'
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)
@@ -33,6 +33,8 @@ export function Seo({ title, description, path, type = 'website', noindex, jsonL
     upsertMeta('property', 'og:url', url)
     upsertMeta('property', 'og:type', type)
     upsertMeta('property', 'og:image', `${SITE_URL}/og-image.png`)
+    upsertMeta('property', 'og:site_name', 'AURON Suite')
+    upsertMeta('name', 'twitter:card', 'summary_large_image')
     upsertMeta('name', 'twitter:title', title)
     upsertMeta('name', 'twitter:description', description)
     upsertMeta('name', 'twitter:image', `${SITE_URL}/og-image.png`)

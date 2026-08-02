@@ -63,7 +63,7 @@ export function Navbar() {
             <div className="w-8 h-8 rounded-lg bg-[var(--auron-accent)] flex items-center justify-center">
               <span className="text-white font-bold text-sm">A</span>
             </div>
-            <span className="font-semibold text-lg tracking-tight text-[var(--auron-text)]">Auron</span>
+            <span className="font-semibold text-lg tracking-tight text-[var(--auron-text)]">AURON Suite</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
@@ -85,7 +85,10 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             {themeButton}
-            <Button variant="primary" size="sm" as="a" href="/contact">Agendar demo</Button>
+            <Button variant="secondary" size="sm" as="a" href="/products">
+              Editions
+            </Button>
+            <Button variant="primary" size="sm" as="a" href="https://app.auronsuite.com" target="_blank" rel="noopener noreferrer">Iniciar sesión</Button>
           </div>
 
           <button
@@ -126,7 +129,10 @@ export function Navbar() {
               </div>
               <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-[var(--auron-border-light)]">
                 {themeButton}
-                <Button variant="primary" size="md" as="a" href="/contact" className="w-full">Agendar demo</Button>
+                <Button variant="secondary" size="md" as="a" href="/products" className="w-full">
+                  Editions
+                </Button>
+                <Button variant="primary" size="md" as="a" href="https://app.auronsuite.com" target="_blank" rel="noopener noreferrer" className="w-full">Iniciar sesión</Button>
               </div>
             </Container>
           </motion.div>

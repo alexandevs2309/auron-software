@@ -15,8 +15,8 @@ export function HomePage() {
   return (
     <>
       <Seo
-        title="Auron Software — Software para negocios de servicio en República Dominicana"
-        description="Auron Software diseña y opera software vertical para negocios de servicio: Auron Suite para belleza y bienestar, Auron Restaurant OS para restaurantes, Auron Health y Auron Hospitality. Facturación DGII e-CF nativa."
+        title="AURON Suite — Plataforma de software para negocios de servicio"
+        description="AURON Suite agrupa todos los productos de Auron Software: Beauty Edition para salones y spas, Restaurant OS para restaurantes, Health para clínicas y Hospitality para hoteles. Un núcleo compartido, facturación DGII e-CF nativa."
         path="/"
         jsonLd={{
           '@context': 'https://schema.org',
@@ -24,10 +24,10 @@ export function HomePage() {
           mainEntity: [
             {
               '@type': 'Question',
-              name: '¿Qué es Auron Software?',
+              name: '¿Qué es AURON Suite?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Auron Software diseña y opera plataformas de gestión para negocios de servicio en República Dominicana: salones y barberías, restaurantes, clínicas y hoteles. Cada producto tiene su propia landing page con su plan y precio.',
+                text: 'AURON Suite es la plataforma y ecosistema de soluciones de software para negocios de servicio en República Dominicana. Agrupa múltiples Editions verticales — Beauty, Restaurant, Hospitality, Health y Retail — sobre un núcleo compartido con facturación DGII e-CF nativa.',
               },
             },
             {

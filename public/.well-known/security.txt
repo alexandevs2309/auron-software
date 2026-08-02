@@ -1,0 +1,8 @@
+Contact: mailto:security@auronsuite.com
+Contact: https://auronsuite.com/contact
+Encryption: https://auronsuite.com/security#pgp
+Acknowledgments: https://auronsuite.com/security#hall-of-fame
+Policy: https://auronsuite.com/security
+Hiring: https://auronsuite.com/contact?subject=Carrera
+Preferred-Languages: es, en
+Canonical: https://auronsuite.com/.well-known/security.txt

@@ -45,8 +45,8 @@ export function ServicesSection() {
     <Section id="services">
       <SectionHeader
         label="Servicios"
-        title="Más allá de nuestros productos"
-        description="Ayudamos a negocios que necesitan más que un producto: software a la medida, IA, automatización e integración."
+        title="Más allá de las Editions"
+        description="Ayudamos a negocios que necesitan más que una Edition: desarrollo a la medida, IA, automatización, cloud e integración — construidos sobre el mismo stack de AURON Suite."
       />
       <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {services.map((s, i) => (

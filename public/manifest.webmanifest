@@ -1,8 +1,8 @@
 {
-  "name": "Auron Software",
-  "short_name": "Auron",
-  "description": "Software vertical para negocios de servicio en República Dominicana.",
-  "start_url": "/",
+  "name": "AURON Suite",
+  "short_name": "AURON Suite",
+  "description": "Plataforma de software para negocios de servicio: Beauty Edition, Restaurant OS, Health, Hospitality.",
+  "start_url": "https://auronsuite.com/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1A56DB",

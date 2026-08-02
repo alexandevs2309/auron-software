@@ -35,7 +35,7 @@ export function AISection() {
       <SectionHeader
         label="Inteligencia Artificial"
         title="Tu negocio, un paso adelante"
-        description="En Auron integramos inteligencia artificial ligera en nuestros productos y servicios para predecir ganancias, ventas y carga laboral — para que decidas con datos, no con corazonadas."
+        description="En AURON Suite integramos inteligencia artificial ligera en cada Edition y en nuestros servicios para predecir ganancias, ventas y carga laboral — para que decidas con datos, no con corazonadas."
       />
 
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">

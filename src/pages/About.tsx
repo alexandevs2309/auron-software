@@ -25,17 +25,18 @@ export function AboutPage() {
   return (
     <>
       <Seo
-        title="Nosotros — Auron Software, hecho en República Dominicana"
-        description="Auron Software construye la plataforma que hace funcionar negocios reales: salones de belleza, barberías y restaurantes. Conoce nuestra historia, valores y roadmap."
+        title="Nosotros — AURON Suite, la plataforma de Auron Software"
+        description="AURON Suite es la plataforma que agrupa Beauty Edition, Restaurant OS, Health y Hospitality. Conoce nuestra historia, valores y roadmap. Hecho en República Dominicana."
         path="/about"
       />
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
         <div className="absolute inset-0" style={{ background: 'var(--auron-gradient-1)' }} />
         <Container className="relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.05]">Nosotros</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.05]">AURON Suite</h1>
             <p className="mt-6 text-lg md:text-xl max-w-xl text-[var(--auron-text-secondary)]" style={{ lineHeight: 1.7 }}>
-              Construimos la plataforma que hace funcionar negocios reales — salones de belleza, barberías, centros de estética y restaurantes.
+              La plataforma que agrupa Beauty Edition, Restaurant OS, Health y Hospitality.
+              Hecha en República Dominicana para negocios de servicio en todo el mundo.
             </p>
           </div>
         </Container>
@@ -47,10 +48,13 @@ export function AboutPage() {
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--auron-text)]">Hecho para negocios reales</h2>
             <div className="mt-6 space-y-4">
               <p className="text-base text-[var(--auron-text-secondary)] leading-relaxed">
-                Auron nació con una idea simple: darle a los negocios de belleza un software tan bueno
-                como el que usan las grandes empresas. Hoy, Auron Suite es una plataforma SaaS multinegocio —
-                cada salón, barbería o centro de estética tiene su propio espacio de trabajo con citas,
-                equipo, comisiones, caja y ganancias.
+                Auron Software nació con una idea simple: darle a los negocios de belleza un software tan bueno
+                como el que usan las grandes empresas. Hoy, <strong>AURON Suite</strong> es la plataforma que agrupa
+                <strong>Beauty Edition</strong> (en operación), <strong>Restaurant OS</strong>, <strong>Health</strong> y <strong>Hospitality</strong> (en desarrollo).
+              </p>
+              <p className="text-base text-[var(--auron-text-secondary)] leading-relaxed">
+                Cada Edition tiene su propio espacio aislado — empleados, servicios, comisiones, caja y ganancias —
+                todo sobre un núcleo compartido: autenticación, APIs, facturación DGII e-CF y seguridad.
               </p>
               <p className="text-base text-[var(--auron-text-secondary)] leading-relaxed">
                 No es un panel de reportes. Es el cerebro operativo del negocio: el equipo registra su
@@ -58,7 +62,7 @@ export function AboutPage() {
                 artificial ligera predice los ingresos futuros.
               </p>
               <p className="text-base text-[var(--auron-text-secondary)] leading-relaxed">
-                Construimos para el largo plazo — un producto honesto a la vez, siempre pensando en las
+                Construimos para el largo plazo — una Edition a la vez, siempre pensando en las
                 personas que dirigen el negocio.
               </p>
             </div>

@@ -3,10 +3,10 @@ import { motion, useInView } from 'framer-motion'
 import { Section, SectionHeader } from './section'
 
 const nodes = [
-  { x: 150, y: 100, code: 'Su', name: 'Auron Suite', status: 'En operación', statusColor: 'var(--auron-accent)' },
-  { x: 650, y: 100, code: 'RO', name: 'Restaurant OS', status: 'En desarrollo', statusColor: 'var(--auron-gold)' },
-  { x: 150, y: 320, code: 'Ho', name: 'Hospitality', status: 'En desarrollo', statusColor: 'var(--auron-gold)' },
-  { x: 650, y: 320, code: 'He', name: 'Auron Health', status: 'En operación', statusColor: 'var(--auron-accent)' },
+  { x: 150, y: 100, code: 'BE', name: 'Beauty Edition', status: 'En operación', statusColor: 'var(--auron-accent)' },
+  { x: 650, y: 100, code: 'RE', name: 'Restaurant Edition', status: 'En desarrollo', statusColor: 'var(--auron-gold)' },
+  { x: 150, y: 320, code: 'HO', name: 'Hospitality Edition', status: 'En desarrollo', statusColor: 'var(--auron-gold)' },
+  { x: 650, y: 320, code: 'ME', name: 'Medical Edition', status: 'Planeado', statusColor: 'var(--auron-badge-planned)' },
 ]
 
 export function CoreDiagram() {
@@ -16,13 +16,13 @@ export function CoreDiagram() {
   return (
     <Section id="architecture">
       <SectionHeader
-        label="Arquitectura"
-        title="Un núcleo, todos los productos"
-        description="Cada vertical de Auron nace de la misma plataforma compartida: autenticación, APIs, facturación y seguridad en común."
+        label="Plataforma"
+        title="Un núcleo, todas las Editions"
+        description="Cada Edition de AURON Suite nace de la misma plataforma compartida: autenticación, APIs, facturación DGII e-CF y seguridad en común."
       />
       <div ref={ref} className="relative">
         <div className="auron-dots absolute inset-0 rounded-3xl opacity-40" aria-hidden />
-        <svg viewBox="0 0 800 440" className="relative w-full h-auto" role="img" aria-label="Diagrama del núcleo Auron y sus productos">
+        <svg viewBox="0 0 800 440" className="relative w-full h-auto" role="img" aria-label="Diagrama del núcleo de AURON Suite y sus Editions">
           <defs>
             <linearGradient id="auron-core-grad" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="#1A56DB" />

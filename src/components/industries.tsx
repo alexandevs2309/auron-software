@@ -1,13 +1,14 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Store, UtensilsCrossed, HeartPulse } from 'lucide-react'
+import { Store, UtensilsCrossed, HeartPulse, Hotel } from 'lucide-react'
 import { Section, SectionHeader } from './section'
 import { SpotlightCard } from './spotlight-card'
 
 const industries = [
-  { icon: Store, name: 'Belleza y Bienestar' },
-  { icon: UtensilsCrossed, name: 'Restaurantes' },
-  { icon: HeartPulse, name: 'Salud' },
+  { icon: Store, name: 'Beauty Edition', tagline: 'Salones y spas' },
+  { icon: UtensilsCrossed, name: 'Restaurant Edition', tagline: 'Restaurantes' },
+  { icon: HeartPulse, name: 'Medical Edition', tagline: 'Clínicas y hospitales' },
+  { icon: Hotel, name: 'Hospitality Edition', tagline: 'Hoteles y resorts' },
 ]
 
 export function Industries() {
@@ -17,9 +18,9 @@ export function Industries() {
   return (
     <Section id="industries">
       <SectionHeader
-        label="Industrias"
-        title="Rubros que atendemos"
-        description="Auron Suite para belleza y bienestar, Auron Health para salud, y Auron Restaurant OS para restaurantes."
+        label="Editions"
+        title="Una Edition para cada rubro"
+        description="Beauty Edition para salones y spas, Restaurant Edition para restaurantes, Medical Edition para clínicas y Hospitality Edition para hoteles."
       />
       <div ref={ref} className="grid grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto">
         {industries.map((ind, i) => (
@@ -34,7 +35,8 @@ export function Industries() {
               <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110" style={{ background: 'var(--auron-gradient-accent-subtle)' }}>
                 <ind.icon className="w-6 h-6" style={{ color: 'var(--auron-accent-text)' }} />
               </div>
-              <span className="text-sm font-medium text-[var(--auron-text)]">{ind.name}</span>
+              <span className="text-sm font-semibold text-[var(--auron-text)]">{ind.name}</span>
+              <span className="text-xs text-[var(--auron-text-tertiary)] mt-1">{ind.tagline}</span>
             </SpotlightCard>
           </motion.div>
         ))}

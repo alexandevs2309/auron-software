@@ -63,7 +63,7 @@ export function Hero() {
           >
             <Sparkles className="w-3.5 h-3.5" style={{ color: 'var(--auron-accent-text)' }} />
             <span className="text-xs font-medium text-[var(--auron-text-secondary)]">
-              Software vertical para negocios de servicio en República Dominicana
+              Plataforma multi-producto · Hecho en República Dominicana
             </span>
           </motion.div>
 
@@ -74,13 +74,13 @@ export function Hero() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight leading-[1.05]"
             style={{ color: 'var(--auron-text)' }}
           >
-            Un núcleo.
+            La plataforma para
             <br />
             <span
               className="font-display italic"
               style={{ background: 'var(--auron-gradient-accent)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
             >
-              Múltiples negocios.
+              negocios de servicio
             </span>
           </motion.h1>
 
@@ -91,9 +91,11 @@ export function Hero() {
             className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-[var(--auron-text-secondary)]"
             style={{ lineHeight: 1.7 }}
           >
-            Auron Software diseña y opera software vertical para negocios de servicio en
-            República Dominicana — cada producto resuelve un rubro distinto, todos comparten
-            el mismo estándar de ingeniería.
+            AURON Suite es la plataforma que agrupa múltiples Editions para negocios de servicio:
+            <br />
+            Beauty Edition para salones y spas (disponible ahora), más Hospitality, Health, Restaurant y Retail Editions en camino.
+            <br />
+            Un núcleo compartido, facturación DGII e-CF nativa.
           </motion.p>
 
           <motion.div
@@ -102,11 +104,11 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button variant="primary" size="lg" as="a" href="/contact">
-              Agendar demo <ArrowRight className="w-4 h-4" />
+            <Button variant="primary" size="lg" as="a" href="/products">
+              Ver todas las Editions <ArrowRight className="w-4 h-4" />
             </Button>
-            <Button variant="secondary" size="lg" as="a" href="/products">
-              Ver Productos
+            <Button variant="ghost" size="lg" as="a" href="/contact">
+              Contacto
             </Button>
           </motion.div>
 

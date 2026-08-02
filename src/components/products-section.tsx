@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, Building2, UtensilsCrossed, Hotel, HeartPulse, Sparkles } from 'lucide-react'
+import { ArrowRight, Building2, UtensilsCrossed, Hotel, HeartPulse, ShoppingBag, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Section, SectionHeader } from './section'
 import { Button } from './button'
@@ -21,9 +21,9 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 'suite',
+    id: 'beauty',
     icon: Building2,
-    name: 'Auron Suite',
+    name: 'Beauty Edition',
     status: 'live',
     description: 'Plataforma de gestión para negocios de belleza y bienestar. Agendamiento, inventario, equipo y cumplimiento fiscal DGII e-CF nativo.',
     features: ['Agendamiento de citas', 'Gestión de clientes', 'Control de inventario', 'Facturación DGII e-CF', 'Analíticas de ventas', 'Historial clínico estético'],
@@ -32,8 +32,8 @@ const products: Product[] = [
   {
     id: 'restaurant',
     icon: UtensilsCrossed,
-    name: 'Auron Restaurant OS',
-    status: 'dev',
+    name: 'Restaurant Edition',
+    status: 'planned',
     description: 'Sistema operativo para restaurantes. POS local-first que funciona sin internet, cocina (KDS), delivery y gestión de mesas.',
     features: ['POS local-first (sin internet)', 'Kitchen Display System', 'Integración delivery', 'Gestión de mesas', 'Control de menú y recetas', 'Inventario y proveedores'],
     gradient: 'linear-gradient(135deg, #10b981, #059669)',
@@ -41,8 +41,8 @@ const products: Product[] = [
   {
     id: 'hospitality',
     icon: Hotel,
-    name: 'Auron Hospitality',
-    status: 'dev',
+    name: 'Hospitality Edition',
+    status: 'planned',
     description: 'Plataforma de operaciones hoteleras. Reservas, housekeeping y experiencia del huésped integradas en un solo sistema.',
     features: ['Motor de reservas', 'Gestión de housekeeping', 'Portal del huésped', 'Integración channel manager', 'Analíticas de ingresos', 'Business intelligence'],
     gradient: 'linear-gradient(135deg, #D97706, #9A5B0A)',
@@ -50,11 +50,20 @@ const products: Product[] = [
   {
     id: 'health',
     icon: HeartPulse,
-    name: 'Auron Health',
-    status: 'live',
+    name: 'Medical Edition',
+    status: 'planned',
     description: 'Plataforma de gestión para salud. Expedientes electrónicos, agendamiento y facturación clínica.',
     features: ['Expediente clínico electrónico', 'Agendamiento de pacientes', 'Facturación y seguros', 'Telemedicina', 'Integración farmacia/lab', 'Cumplimiento regulatorio'],
     gradient: 'linear-gradient(135deg, #f43f5e, #e11d48)',
+  },
+  {
+    id: 'retail',
+    icon: ShoppingBag,
+    name: 'Retail Edition',
+    status: 'planned',
+    description: 'Plataforma de gestión para comercios y tiendas. POS, inventario, clientes y reportes en un solo sistema.',
+    features: ['Punto de venta (POS)', 'Gestión de inventario', 'Perfiles de clientes', 'Facturación DGII e-CF', 'Reportes de ventas', 'Gestión de proveedores'],
+    gradient: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
   },
 ]
 
@@ -100,8 +109,13 @@ function CardBody({ p }: { p: Product }) {
           </li>
         ))}
       </ul>
-      <Link to={`/products#${p.id}`} className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: 'var(--auron-accent-text)' }}>
-        Más información <ArrowRight className="w-3.5 h-3.5" />
+      <Link
+        to={p.status === 'live' ? 'https://app.auronsuite.com' : '/coming-soon'}
+        {...(p.status === 'live' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
+        style={{ color: 'var(--auron-accent-text)' }}
+      >
+        Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
       </Link>
     </>
   )
@@ -121,8 +135,13 @@ function FeaturedCardBody({ p }: { p: Product }) {
           </div>
         </div>
         <p className="text-sm text-[var(--auron-text-secondary)] leading-relaxed mb-6 lg:max-w-md">{p.description}</p>
-        <Link to={`/products#${p.id}`} className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: 'var(--auron-accent-text)' }}>
-          Más información <ArrowRight className="w-3.5 h-3.5" />
+        <Link
+          to={p.status === 'live' ? 'https://app.auronsuite.com' : '/coming-soon'}
+          {...(p.status === 'live' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
+          style={{ color: 'var(--auron-accent-text)' }}
+        >
+          Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
       <ul className="grid sm:grid-cols-2 gap-2.5 lg:w-[45%] shrink-0">
@@ -158,15 +177,16 @@ export function ProductsSection() {
   return (
     <Section id="products">
       <SectionHeader
-        label="Productos"
-        title="Construido para cada rubro"
-        description="Cada producto del ecosistema Auron comparte una base común: confiabilidad, seguridad y una experiencia de usuario de clase mundial."
+        label="Editions"
+        title="Una Edition para cada rubro"
+        description="Cada Edition de AURON Suite se construye sobre una base común: confiabilidad, seguridad y una experiencia de usuario de clase mundial."
       />
       <div ref={ref} className="grid gap-6 md:gap-8 lg:grid-cols-3">
         {render(products[0], 0, true)}
         {render(products[1], 1, false)}
         {render(products[2], 2, false)}
-        {render(products[3], 3, true)}
+        {render(products[3], 3, false)}
+        {render(products[4], 4, false)}
       </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -175,7 +195,7 @@ export function ProductsSection() {
         className="mt-12 text-center"
       >
         <Button variant="secondary" size="md" as="a" href="/products">
-          Ver todos los productos <ArrowRight className="w-4 h-4" />
+          Ver todas las Editions <ArrowRight className="w-4 h-4" />
         </Button>
       </motion.div>
     </Section>

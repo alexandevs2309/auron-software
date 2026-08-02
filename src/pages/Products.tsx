@@ -8,6 +8,7 @@ import { ProductMockup } from '../components/product-mockup'
 import { Seo } from '../components/seo'
 import { CTA } from '../components/cta'
 import { cn } from '@/lib/utils'
+import { getProductHref, isProductExternal } from '@/config/products'
 
 type ProductStatus = 'live' | 'dev' | 'planned'
 
@@ -215,7 +216,14 @@ export function ProductsPage() {
                 </ul>
                 <div className="mt-8">
                   {p.status === 'live' ? (
-                    <Button variant="primary" size="md" as="a" href="https://app.auronsuite.com" target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      as="a"
+                      href={getProductHref(p.id)}
+                      target={isProductExternal(p.id) ? '_blank' : undefined}
+                      rel={isProductExternal(p.id) ? 'noopener noreferrer' : undefined}
+                    >
                       Abrir {p.name} <ArrowRight className="w-4 h-4" />
                     </Button>
                   ) : (

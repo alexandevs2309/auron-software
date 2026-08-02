@@ -6,6 +6,7 @@ import { Section, SectionHeader } from './section'
 import { Button } from './button'
 import { SpotlightCard } from './spotlight-card'
 import { cn } from '@/lib/utils'
+import { PRODUCT_CONFIG, getProductHref, isProductExternal } from '@/config/products'
 
 type ProductStatus = 'live' | 'dev' | 'planned'
 
@@ -87,6 +88,8 @@ function StatusBadge({ status }: { status: ProductStatus }) {
 }
 
 function CardBody({ p }: { p: Product }) {
+  const href = getProductHref(p.id)
+  const external = isProductExternal(p.id)
   return (
     <>
       <div className="flex items-start gap-4 mb-5">
@@ -109,19 +112,32 @@ function CardBody({ p }: { p: Product }) {
           </li>
         ))}
       </ul>
-      <Link
-        to={p.status === 'live' ? 'https://app.auronsuite.com' : '/coming-soon'}
-        {...(p.status === 'live' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
-        style={{ color: 'var(--auron-accent-text)' }}
-      >
-        Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
-      </Link>
+      {external ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
+          style={{ color: 'var(--auron-accent-text)' }}
+        >
+          Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
+        </a>
+      ) : (
+        <Link
+          to={href}
+          className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
+          style={{ color: 'var(--auron-accent-text)' }}
+        >
+          Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      )}
     </>
   )
 }
 
 function FeaturedCardBody({ p }: { p: Product }) {
+  const href = getProductHref(p.id)
+  const external = isProductExternal(p.id)
   return (
     <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start h-full">
       <div className="lg:flex-1 lg:min-w-0">
@@ -135,14 +151,25 @@ function FeaturedCardBody({ p }: { p: Product }) {
           </div>
         </div>
         <p className="text-sm text-[var(--auron-text-secondary)] leading-relaxed mb-6 lg:max-w-md">{p.description}</p>
-        <Link
-          to={p.status === 'live' ? 'https://app.auronsuite.com' : '/coming-soon'}
-          {...(p.status === 'live' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
-          style={{ color: 'var(--auron-accent-text)' }}
-        >
-          Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
+        {external ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
+            style={{ color: 'var(--auron-accent-text)' }}
+          >
+            Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        ) : (
+          <Link
+            to={href}
+            className="auron-focus-ring inline-flex items-center gap-1.5 text-sm font-medium"
+            style={{ color: 'var(--auron-accent-text)' }}
+          >
+            Abrir {p.name} <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        )}
       </div>
       <ul className="grid sm:grid-cols-2 gap-2.5 lg:w-[45%] shrink-0">
         {p.features.map((f) => (

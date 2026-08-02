@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Container } from './container'
 import { Button } from './button'
 import { useTheme } from '@/lib/theme'
+import { getLiveProduct } from '@/config/products'
 
 const links = [
   { label: 'Productos', href: '/products' },
@@ -14,6 +15,10 @@ const links = [
   { label: 'Blog', href: '/blog' },
   { label: 'Contacto', href: '/contact' },
 ]
+
+const liveProduct = getLiveProduct()
+const loginHref = liveProduct?.href ?? 'https://beauty.auronsuite.com'
+const loginExternal = liveProduct?.external ?? true
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -88,7 +93,16 @@ export function Navbar() {
             <Button variant="secondary" size="sm" as="a" href="/products">
               Editions
             </Button>
-            <Button variant="primary" size="sm" as="a" href="https://app.auronsuite.com" target="_blank" rel="noopener noreferrer">Iniciar sesión</Button>
+            <Button
+              variant="primary"
+              size="sm"
+              as="a"
+              href={loginHref}
+              target={loginExternal ? '_blank' : undefined}
+              rel={loginExternal ? 'noopener noreferrer' : undefined}
+            >
+              Iniciar sesión
+            </Button>
           </div>
 
           <button
@@ -132,7 +146,17 @@ export function Navbar() {
                 <Button variant="secondary" size="md" as="a" href="/products" className="w-full">
                   Editions
                 </Button>
-                <Button variant="primary" size="md" as="a" href="https://app.auronsuite.com" target="_blank" rel="noopener noreferrer" className="w-full">Iniciar sesión</Button>
+                <Button
+                  variant="primary"
+                  size="md"
+                  as="a"
+                  href={loginHref}
+                  target={loginExternal ? '_blank' : undefined}
+                  rel={loginExternal ? 'noopener noreferrer' : undefined}
+                  className="w-full"
+                >
+                  Iniciar sesión
+                </Button>
               </div>
             </Container>
           </motion.div>

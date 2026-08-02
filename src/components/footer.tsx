@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Container } from './container'
+import { PRODUCT_CONFIG } from '@/config/products'
 
 interface FooterLink {
   label: string
@@ -7,14 +8,14 @@ interface FooterLink {
   external?: boolean
 }
 
+const productLinks = PRODUCT_CONFIG.map((p) => ({
+  label: p.label,
+  href: p.href,
+  external: p.external,
+}))
+
 const footerLinks: Record<string, FooterLink[]> = {
-  Ediciones: [
-    { label: 'Beauty Edition', href: 'https://app.auronsuite.com', external: true },
-    { label: 'Restaurant Edition', href: '/products#restaurant' },
-    { label: 'Hospitality Edition', href: '/products#hospitality' },
-    { label: 'Medical Edition', href: '/products#health' },
-    { label: 'Retail Edition', href: '/products#retail' },
-  ],
+  Ediciones: productLinks,
   Servicios: [
     { label: 'Desarrollo a la medida', href: '/services#custom' },
     { label: 'Inteligencia Artificial', href: '/services#ai' },

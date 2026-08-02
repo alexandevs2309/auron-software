@@ -90,11 +90,11 @@ export function ProductsPage() {
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     description: p.description,
-    url: `https://auronsoftware.com/products#${p.id}`,
+    url: `https://auronsoftware.do/products#${p.id}`,
     publisher: {
       '@type': 'Organization',
       name: 'Auron Software',
-      url: 'https://auronsoftware.com',
+      url: 'https://auronsoftware.do',
     },
   }))
 

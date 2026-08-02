@@ -9,7 +9,7 @@ interface SeoProps {
   jsonLd?: object | object[]
 }
 
-const SITE_URL = 'https://auronsoftware.com'
+const SITE_URL = 'https://auronsoftware.do'
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)

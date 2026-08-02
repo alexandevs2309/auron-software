@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://auronsoftware.com/sitemap.xml
+Sitemap: https://auronsoftware.do/sitemap.xml

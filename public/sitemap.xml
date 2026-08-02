@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://auronsoftware.com/</loc>
+    <loc>https://auronsoftware.do/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/products</loc>
+    <loc>https://auronsoftware.do/products</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/services</loc>
+    <loc>https://auronsoftware.do/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/about</loc>
+    <loc>https://auronsoftware.do/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/contact</loc>
+    <loc>https://auronsoftware.do/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/blog</loc>
+    <loc>https://auronsoftware.do/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/privacy</loc>
+    <loc>https://auronsoftware.do/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/terms</loc>
+    <loc>https://auronsoftware.do/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://auronsoftware.com/security</loc>
+    <loc>https://auronsoftware.do/security</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

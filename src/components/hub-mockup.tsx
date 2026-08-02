@@ -33,7 +33,7 @@ export function HubMockup({ gradient = 'linear-gradient(135deg, #1A56DB, #123F9E
         <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f59e0b', opacity: 0.85 }} />
         <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#10b981', opacity: 0.85 }} />
         <span className="ml-3 flex-1 max-w-[240px] truncate rounded-md px-3 py-1 text-[10px] text-[var(--auron-text-secondary)] bg-[var(--auron-bg-tertiary)]">
-          auronsoftware.com
+          auronsoftware.do
         </span>
       </div>
 

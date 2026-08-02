@@ -38,7 +38,7 @@ export function ProductMockup({ gradient, title, eyebrow = 'Panel de operaciones
         <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f59e0b', opacity: 0.85 }} />
         <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#10b981', opacity: 0.85 }} />
         <span className="ml-3 flex-1 max-w-[240px] truncate rounded-md px-3 py-1 text-[10px] text-[var(--auron-text-secondary)] bg-[var(--auron-bg-tertiary)]">
-          app.auronsoftware.com/{title.toLowerCase().replace(/\s+/g, '-')}
+          app.auronsoftware.do/{title.toLowerCase().replace(/\s+/g, '-')}
         </span>
       </div>
 

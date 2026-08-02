@@ -1,6 +1,6 @@
 # Auron Software — Sitio corporativo
 
-Hub corporativo de **Auron Software** (`auronsoftware.com`). Este sitio centraliza a la
+Hub corporativo de **Auron Software** (`auronsoftware.do`). Este sitio centraliza a la
 empresa: presenta el portfolio de productos, los servicios, la empresa, el blog y el
 contacto. **No contiene precios** — cada producto (Auron Suite, Restaurant OS, Hospitality,
 Health) tiene su propia landing page con su plan y precio.
@@ -75,9 +75,9 @@ Push a `main` dispara el workflow `.github/workflows/deploy.yml`, que construye 
 en **GitHub Pages**. Pasos para activarlo:
 
 1. GitHub → **Settings → Pages** → Source: **GitHub Actions**.
-2. Añadir dominio personalizado `auronsoftware.com` (el `CNAME` ya está en el repo).
-3. DNS: `CNAME auronsoftware.com → <usuario>.github.io`.
-4. Google Search Console: verificar el dominio y enviar `https://auronsoftware.com/sitemap.xml`.
+2. Añadir dominio personalizado `auronsoftware.do` (el `CNAME` ya está en el repo).
+3. DNS: `CNAME auronsoftware.do → <usuario>.github.io`.
+4. Google Search Console: verificar el dominio y enviar `https://auronsoftware.do/sitemap.xml`.
 
 ## Convenciones
 

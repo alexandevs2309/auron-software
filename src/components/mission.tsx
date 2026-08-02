@@ -1,0 +1,102 @@
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { Shield, Cpu, Users, Globe } from 'lucide-react'
+import { Section } from './section'
+import { SpotlightCard } from './spotlight-card'
+
+const values = [
+  {
+    icon: Shield,
+    title: 'Seguridad empresarial',
+    description: 'Infraestructura con cifrado de extremo a extremo. Tus datos están protegidos en cada capa.',
+  },
+  {
+    icon: Cpu,
+    title: 'Arquitectura unificada',
+    description: 'Construido sobre una plataforma común. Todos los productos comparten APIs, autenticación y datos.',
+  },
+  {
+    icon: Users,
+    title: 'Primero el cliente',
+    description: 'Equipo de soporte dedicado con SLA de uptime. Somos tu socio tecnológico a largo plazo.',
+  },
+  {
+    icon: Globe,
+    title: 'Hecho en RD',
+    description: 'Diseñado y operado desde República Dominicana, con estándares de ingeniería de clase mundial.',
+  },
+]
+
+export function Mission() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <Section id="about">
+      <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div>
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block text-xs font-semibold tracking-widest uppercase mb-4"
+            style={{ color: 'var(--auron-accent-text)' }}
+          >
+            Por qué Auron
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.1]"
+          >
+            Una plataforma.
+            <br />
+            <span className="font-display italic" style={{ color: 'var(--auron-accent-text)' }}>
+              Posibilidades infinitas.
+            </span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-6 text-base md:text-lg text-[var(--auron-text-secondary)] leading-relaxed"
+          >
+            Auron Software construye plataformas de grado empresarial que potencian negocios
+            en República Dominicana. Nuestro ecosistema unificado permite que cada producto
+            funcione en conjunto, compartiendo datos, autenticación e infraestructura.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-4 text-base md:text-lg text-[var(--auron-text-secondary)] leading-relaxed"
+          >
+            Ya sea que necesites un POS para restaurantes, una plataforma hotelera o software
+            a la medida — Auron entrega.
+          </motion.p>
+        </div>
+
+        <div ref={ref} className="grid sm:grid-cols-2 gap-4 md:gap-6">
+          {values.map((v, i) => (
+            <motion.div
+              key={v.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+              className="h-full"
+            >
+              <SpotlightCard className="h-full p-5 md:p-6">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'var(--auron-gradient-accent-subtle)' }}>
+                  <v.icon className="w-5 h-5" style={{ color: 'var(--auron-accent-text)' }} />
+                </div>
+                <h3 className="text-base font-semibold text-[var(--auron-text)] mb-2">{v.title}</h3>
+                <p className="text-sm text-[var(--auron-text-secondary)] leading-relaxed">{v.description}</p>
+              </SpotlightCard>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  )
+}

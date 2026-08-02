@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-auron-bg: var(--auron-bg);
+  --color-auron-bg-secondary: var(--auron-bg-secondary);
+  --color-auron-bg-tertiary: var(--auron-bg-tertiary);
+  --color-auron-text: var(--auron-text);
+  --color-auron-text-secondary: var(--auron-text-secondary);
+  --color-auron-text-tertiary: var(--auron-text-tertiary);
+  --color-auron-border: var(--auron-border);
+  --color-auron-border-light: var(--auron-border-light);
+  --color-auron-accent: #1A56DB;
+  --color-auron-accent-dark: #123F9E;
+  --color-auron-accent-text: var(--auron-accent-text);
+  --color-auron-gold: #D97706;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+
+  --radius-button: 0.75rem;
+  --radius-card: 1rem;
+
+  --animate-fade-in: fade-in 0.6s ease forwards;
+  --animate-fade-in-up: fade-in-up 0.6s ease forwards;
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+:root {
+  --auron-navy-50: oklch(0.97 0.01 260);
+  --auron-navy-100: oklch(0.93 0.02 260);
+  --auron-navy-200: oklch(0.88 0.03 260);
+  --auron-navy-300: oklch(0.80 0.05 260);
+  --auron-navy-400: oklch(0.72 0.07 260);
+  --auron-navy-500: oklch(0.62 0.09 260);
+  --auron-navy-600: oklch(0.52 0.10 260);
+  --auron-navy-700: oklch(0.42 0.10 260);
+  --auron-navy-800: oklch(0.32 0.09 260);
+  --auron-navy-900: oklch(0.22 0.07 260);
+  --auron-navy-950: oklch(0.14 0.05 260);
+
+  --auron-slate-50: oklch(0.98 0.005 260);
+  --auron-slate-100: oklch(0.95 0.01 260);
+  --auron-slate-200: oklch(0.90 0.015 260);
+  --auron-slate-300: oklch(0.85 0.02 260);
+  --auron-slate-400: oklch(0.77 0.025 260);
+  --auron-slate-500: oklch(0.68 0.03 260);
+  --auron-slate-600: oklch(0.58 0.03 260);
+  --auron-slate-700: oklch(0.48 0.03 260);
+  --auron-slate-800: oklch(0.38 0.02 260);
+  --auron-slate-900: oklch(0.28 0.02 260);
+
+  --auron-warm-50: oklch(0.99 0.005 60);
+  --auron-warm-100: oklch(0.97 0.01 60);
+  --auron-warm-200: oklch(0.94 0.015 60);
+  --auron-warm-300: oklch(0.90 0.02 60);
+}
+
+.auron-light {
+  --auron-accent: #1A56DB;
+  --auron-accent-dark: #123F9E;
+  --auron-accent-text: var(--auron-accent-dark);
+  --auron-gold: #D97706;
+  --auron-gold-dark: #9A5B0A;
+  --auron-badge-dev: var(--auron-gold-dark);
+  --auron-badge-planned: var(--auron-slate-700);
+  --auron-bg: #ffffff;
+  --auron-bg-secondary: var(--auron-slate-50);
+  --auron-bg-tertiary: var(--auron-warm-100);
+  --auron-text: var(--auron-navy-950);
+  --auron-text-secondary: var(--auron-slate-700);
+  --auron-text-tertiary: oklch(0.54 0.03 260);
+  --auron-border: var(--auron-slate-200);
+  --auron-border-light: var(--auron-slate-100);
+  --auron-border-input: var(--auron-slate-600);
+  --auron-card-bg: #ffffff;
+  --auron-card-border: var(--auron-slate-200);
+  --auron-gradient-1: linear-gradient(135deg, #f8faff 0%, #e9effc 50%, #dce6f7 100%);
+  --auron-gradient-2: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+  --auron-gradient-3: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --auron-gradient-cta: linear-gradient(135deg, #eef2fb 0%, #dce6f7 100%);
+  --auron-gradient-accent: linear-gradient(135deg, #1A56DB 0%, #123F9E 100%);
+  --auron-gradient-accent-subtle: linear-gradient(135deg, rgba(26, 86, 219, 0.05) 0%, rgba(18, 63, 158, 0.02) 100%);
+  --auron-glow: 0 0 40px rgba(26, 86, 219, 0.15);
+  --auron-accent-glow: rgba(26, 86, 219, 0.12);
+  --auron-spotlight-color: rgba(26, 86, 219, 0.10);
+  --auron-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --auron-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --auron-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --auron-shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.10);
+  --auron-nav-bg: rgba(255, 255, 255, 0.8);
+  --auron-hero-grid-opacity: 0.06;
+}
+
+.auron-dark {
+  --auron-accent: #1A56DB;
+  --auron-accent-dark: #123F9E;
+  --auron-accent-text: var(--auron-navy-300);
+  --auron-gold: #D97706;
+  --auron-gold-dark: #9A5B0A;
+  --auron-badge-dev: var(--auron-gold);
+  --auron-badge-planned: var(--auron-slate-400);
+  --auron-bg: var(--auron-navy-950);
+  --auron-bg-secondary: var(--auron-navy-900);
+  --auron-bg-tertiary: var(--auron-navy-800);
+  --auron-text: var(--auron-slate-50);
+  --auron-text-secondary: var(--auron-slate-400);
+  --auron-text-tertiary: var(--auron-slate-500);
+  --auron-border: var(--auron-navy-700);
+  --auron-border-light: var(--auron-navy-800);
+  --auron-border-input: var(--auron-navy-500);
+  --auron-card-bg: var(--auron-navy-900);
+  --auron-card-border: var(--auron-navy-700);
+  --auron-gradient-1: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
+  --auron-gradient-2: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  --auron-gradient-3: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --auron-gradient-cta: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  --auron-gradient-accent: linear-gradient(135deg, var(--auron-navy-300) 0%, var(--auron-navy-200) 100%);
+  --auron-gradient-accent-subtle: linear-gradient(135deg, rgba(26, 86, 219, 0.08) 0%, rgba(18, 63, 158, 0.03) 100%);
+  --auron-glow: 0 0 40px rgba(26, 86, 219, 0.10);
+  --auron-accent-glow: rgba(26, 86, 219, 0.08);
+  --auron-spotlight-color: rgba(26, 86, 219, 0.08);
+  --auron-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --auron-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --auron-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
+  --auron-shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --auron-nav-bg: rgba(2, 6, 23, 0.8);
+  --auron-hero-grid-opacity: 0.03;
+}
+
+*, *::before, *::after {
+  border-color: var(--auron-border);
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--auron-bg);
+  color: var(--auron-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+@keyframes auron-mesh-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(60px, -40px, 0) scale(1.15); }
+  66% { transform: translate3d(-40px, 35px, 0) scale(0.95); }
+}
+
+@keyframes auron-mesh-drift-reverse {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(-50px, 30px, 0) scale(1.1); }
+  66% { transform: translate3d(45px, -25px, 0) scale(0.98); }
+}
+
+@keyframes auron-glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.auron-mesh-drift { animation: auron-mesh-drift 18s ease-in-out infinite; }
+.auron-mesh-drift-reverse { animation: auron-mesh-drift-reverse 24s ease-in-out infinite; }
+.auron-glow-pulse { animation: auron-glow-pulse 8s ease-in-out infinite; }
+
+.auron-noise {
+  position: relative;
+}
+.auron-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+@keyframes auron-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.auron-marquee-track {
+  animation: auron-marquee 32s linear infinite;
+}
+.auron-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.auron-dots {
+  background-image: radial-gradient(var(--auron-border) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.auron-grid-bg {
+  background-image: linear-gradient(var(--auron-border-light) 1px, transparent 1px), linear-gradient(90deg, var(--auron-border-light) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.auron-focus-ring:focus-visible {
+  outline: 2px solid var(--auron-accent);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

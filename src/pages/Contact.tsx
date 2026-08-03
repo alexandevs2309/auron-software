@@ -10,6 +10,8 @@ const info = [
   { icon: Clock, label: 'Horario', value: 'Lunes a viernes, 9:00 AM – 6:00 PM' },
 ]
 
+const WEB3FORMS_ACCESS_KEY = 'REEMPLAZA_CON_TU_ACCESS_KEY_DE_WEB3FORMS'
+
 export function ContactPage() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
@@ -19,17 +21,36 @@ export function ContactPage() {
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const botRef = useRef<HTMLInputElement>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const body = [
-      `Nombre: ${firstName} ${lastName}`,
-      `Email: ${email}`,
-      '',
-      message,
-    ].join('\n')
-    const mailto = `mailto:hello@auronsuite.com?subject=${encodeURIComponent(subject || 'Contacto desde el sitio')}&body=${encodeURIComponent(body)}`
-    window.location.href = mailto
+    setStatus('sending')
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          botcheck: botRef.current?.value ?? '',
+          subject: subject || 'Contacto desde el sitio',
+          from_name: `${firstName} ${lastName}`.trim() || 'Sin nombre',
+          email,
+          message,
+        }),
+      })
+      const data = await res.json()
+      if (!data.success) throw new Error('web3forms_error')
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setSubject('')
+      setMessage('')
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -81,6 +102,7 @@ export function ContactPage() {
               className="lg:col-span-3"
             >
               <form className="space-y-6" onSubmit={handleSubmit}>
+                <input ref={botRef} type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                 <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">Nombre</label>
@@ -141,11 +163,28 @@ export function ContactPage() {
                     placeholder="Cuéntanos sobre tu proyecto..."
                   />
                 </div>
-                <Button variant="primary" size="lg" className="w-full sm:w-auto" type="submit">
-                  Enviar mensaje
+                {status === 'success' && (
+                  <div
+                    role="status"
+                    className="rounded-xl border border-[var(--auron-accent)]/30 bg-[var(--auron-accent)]/10 px-4 py-3 text-sm font-medium text-[var(--auron-accent-text)]"
+                  >
+                    ¡Mensaje enviado! Te responderemos en menos de 24 horas.
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div
+                    role="alert"
+                    className="rounded-xl border border-[var(--auron-warm-300)] bg-[var(--auron-warm-100)] px-4 py-3 text-sm text-[var(--auron-text)]"
+                  >
+                    Hubo un error al enviar tu mensaje. Intenta de nuevo o escríbenos directo a{' '}
+                    <span className="font-medium">hello@auronsuite.com</span>.
+                  </div>
+                )}
+                <Button variant="primary" size="lg" className="w-full sm:w-auto" type="submit" disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
                 </Button>
                 <p className="text-xs text-[var(--auron-text-tertiary)]">
-                  El formulario abre tu cliente de correo con el mensaje listo para enviar a hello@auronsuite.com.
+                  Al enviar, tu mensaje llega directo a hello@auronsuite.com. Respondemos en menos de 24 horas.
                 </p>
               </form>
             </motion.div>

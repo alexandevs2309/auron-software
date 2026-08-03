@@ -1,4 +1,4 @@
-Contact: mailto:security@auronsuite.com
+Contact: mailto:legal@auronsuite.com
 Contact: https://auronsuite.com/contact
 Encryption: https://auronsuite.com/security#pgp
 Acknowledgments: https://auronsuite.com/security#hall-of-fame

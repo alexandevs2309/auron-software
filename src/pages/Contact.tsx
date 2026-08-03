@@ -6,7 +6,7 @@ import { Button } from '../components/button'
 import { Seo } from '../components/seo'
 
 const info = [
-  { icon: Mail, label: 'Email', value: 'hello@auronsuite.com' },
+  { icon: Mail, label: 'Email', value: 'ventas@auronsuite.com' },
   { icon: Clock, label: 'Horario', value: 'Lunes a viernes, 9:00 AM – 6:00 PM' },
 ]
 
@@ -177,14 +177,14 @@ export function ContactPage() {
                     className="rounded-xl border border-[var(--auron-warm-300)] bg-[var(--auron-warm-100)] px-4 py-3 text-sm text-[var(--auron-text)]"
                   >
                     Hubo un error al enviar tu mensaje. Intenta de nuevo o escríbenos directo a{' '}
-                    <span className="font-medium">hello@auronsuite.com</span>.
+                    <span className="font-medium">ventas@auronsuite.com</span>.
                   </div>
                 )}
                 <Button variant="primary" size="lg" className="w-full sm:w-auto" type="submit" disabled={status === 'sending'}>
                   {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
                 </Button>
                 <p className="text-xs text-[var(--auron-text-tertiary)]">
-                  Al enviar, tu mensaje llega directo a hello@auronsuite.com. Respondemos en menos de 24 horas.
+                  Al enviar, tu mensaje llega directo a ventas@auronsuite.com. Respondemos en menos de 24 horas.
                 </p>
               </form>
             </motion.div>

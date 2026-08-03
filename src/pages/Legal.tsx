@@ -83,11 +83,11 @@ export function PrivacyPage() {
         },
         {
           title: 'Tus derechos',
-          body: 'Puedes solicitar acceso, corrección o eliminación de tus datos personales en cualquier momento escribiendo a privacy@auronsuite.com. Responderemos en un plazo máximo de 30 días.',
+          body: 'Puedes solicitar acceso, corrección o eliminación de tus datos personales en cualquier momento escribiendo a legal@auronsuite.com. Responderemos en un plazo máximo de 30 días.',
         },
         {
           title: 'Contacto',
-          body: 'Para cualquier consulta sobre esta política, escríbenos a privacy@auronsuite.com o a través del formulario de contacto.',
+          body: 'Para cualquier consulta sobre esta política, escríbenos a legal@auronsuite.com o a través del formulario de contacto.',
         },
       ]}
     />
@@ -175,11 +175,11 @@ export function SecurityPage() {
         },
         {
           title: 'Reporte de vulnerabilidades',
-          body: 'Si descubres una vulnerabilidad en nuestros productos, te agradecemos reportarla de forma responsable a security@auronsuite.com. Investigamos y resolvemos con prioridad.',
+          body: 'Si descubres una vulnerabilidad en nuestros productos, te agradecemos reportarla de forma responsable a legal@auronsuite.com. Investigamos y resolvemos con prioridad.',
         },
         {
           title: 'Contacto',
-          body: 'Para asuntos de seguridad, escríbenos a security@auronsuite.com.',
+          body: 'Para asuntos de seguridad, escríbenos a legal@auronsuite.com.',
         },
       ]}
     />

@@ -10,7 +10,7 @@ const info = [
   { icon: Clock, label: 'Horario', value: 'Lunes a viernes, 9:00 AM – 6:00 PM' },
 ]
 
-const WEB3FORMS_ACCESS_KEY = 'REEMPLAZA_CON_TU_ACCESS_KEY_DE_WEB3FORMS'
+const WEB3FORMS_ACCESS_KEY = '43a2aad1-05e8-4bf6-892f-1895859bde32'
 
 export function ContactPage() {
   const ref = useRef<HTMLDivElement>(null)

@@ -6,26 +6,24 @@ import { Section, SectionHeader } from './section'
 import { Button } from './button'
 import { SpotlightCard } from './spotlight-card'
 import { cn } from '@/lib/utils'
-import { PRODUCT_CONFIG, getProductHref, isProductExternal } from '@/config/products'
-
-type ProductStatus = 'live' | 'dev' | 'planned'
+import { getProductConfig, getProductHref, isProductExternal } from '@/config/products'
 
 interface Product {
   id: string
   icon: React.ComponentType<{ className?: string }>
   name: string
-  status: ProductStatus
   description: string
   features: string[]
   gradient: string
 }
+
+const statusOf = (id: string) => getProductConfig(id)?.status ?? 'planned'
 
 const products: Product[] = [
   {
     id: 'beauty',
     icon: Building2,
     name: 'Beauty Edition',
-    status: 'live',
     description: 'Plataforma de gestión para negocios de belleza y bienestar. Agendamiento, inventario, equipo y cumplimiento fiscal DGII e-CF nativo.',
     features: ['Agendamiento de citas', 'Gestión de clientes', 'Control de inventario', 'Facturación DGII e-CF', 'Analíticas de ventas', 'Historial clínico estético'],
     gradient: 'linear-gradient(135deg, #1A56DB, #123F9E)',
@@ -34,7 +32,6 @@ const products: Product[] = [
     id: 'restaurant',
     icon: UtensilsCrossed,
     name: 'Restaurant Edition',
-    status: 'planned',
     description: 'Sistema operativo para restaurantes. POS local-first que funciona sin internet, cocina (KDS), delivery y gestión de mesas.',
     features: ['POS local-first (sin internet)', 'Kitchen Display System', 'Integración delivery', 'Gestión de mesas', 'Control de menú y recetas', 'Inventario y proveedores'],
     gradient: 'linear-gradient(135deg, #10b981, #059669)',
@@ -43,7 +40,6 @@ const products: Product[] = [
     id: 'hospitality',
     icon: Hotel,
     name: 'Hospitality Edition',
-    status: 'planned',
     description: 'Plataforma de operaciones hoteleras. Reservas, housekeeping y experiencia del huésped integradas en un solo sistema.',
     features: ['Motor de reservas', 'Gestión de housekeeping', 'Portal del huésped', 'Integración channel manager', 'Analíticas de ingresos', 'Business intelligence'],
     gradient: 'linear-gradient(135deg, #D97706, #9A5B0A)',
@@ -52,7 +48,6 @@ const products: Product[] = [
     id: 'health',
     icon: HeartPulse,
     name: 'Medical Edition',
-    status: 'planned',
     description: 'Plataforma de gestión para salud. Expedientes electrónicos, agendamiento y facturación clínica.',
     features: ['Expediente clínico electrónico', 'Agendamiento de pacientes', 'Facturación y seguros', 'Telemedicina', 'Integración farmacia/lab', 'Cumplimiento regulatorio'],
     gradient: 'linear-gradient(135deg, #f43f5e, #e11d48)',
@@ -61,20 +56,19 @@ const products: Product[] = [
     id: 'retail',
     icon: ShoppingBag,
     name: 'Retail Edition',
-    status: 'planned',
     description: 'Plataforma de gestión para comercios y tiendas. POS, inventario, clientes y reportes en un solo sistema.',
     features: ['Punto de venta (POS)', 'Gestión de inventario', 'Perfiles de clientes', 'Facturación DGII e-CF', 'Reportes de ventas', 'Gestión de proveedores'],
     gradient: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
   },
 ]
 
-const statusConfig: Record<ProductStatus, { label: string; className: string }> = {
+const statusConfig: Record<'live' | 'dev' | 'planned', { label: string; className: string }> = {
   live: { label: 'En operación', className: 'bg-[var(--auron-accent)] text-white border-transparent' },
   dev: { label: 'En desarrollo', className: 'bg-[var(--auron-gold)]/10 text-[var(--auron-badge-dev)] border-[var(--auron-badge-dev)]/20' },
   planned: { label: 'Planeado', className: 'bg-[var(--auron-badge-planned)]/10 text-[var(--auron-badge-planned)] border-[var(--auron-badge-planned)]/20' },
 }
 
-function StatusBadge({ status }: { status: ProductStatus }) {
+function StatusBadge({ status }: { status: 'live' | 'dev' | 'planned' }) {
   const cfg = statusConfig[status]
   return (
     <span className={cn(
@@ -99,7 +93,7 @@ function CardBody({ p }: { p: Product }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3 flex-wrap">
             <h3 className="text-xl font-semibold text-[var(--auron-text)]">{p.name}</h3>
-            <StatusBadge status={p.status} />
+            <StatusBadge status={statusOf(p.id)} />
           </div>
           <p className="mt-1 text-sm text-[var(--auron-text-secondary)] leading-relaxed">{p.description}</p>
         </div>
@@ -147,7 +141,7 @@ function FeaturedCardBody({ p }: { p: Product }) {
           </div>
           <div className="flex items-center gap-3 flex-wrap">
             <h3 className="text-2xl font-semibold text-[var(--auron-text)]">{p.name}</h3>
-            <StatusBadge status={p.status} />
+            <StatusBadge status={statusOf(p.id)} />
           </div>
         </div>
         <p className="text-sm text-[var(--auron-text-secondary)] leading-relaxed mb-6 lg:max-w-md">{p.description}</p>

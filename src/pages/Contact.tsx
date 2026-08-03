@@ -6,7 +6,7 @@ import { Button } from '../components/button'
 import { Seo } from '../components/seo'
 
 const info = [
-  { icon: Mail, label: 'Email', value: 'hello@auronsoftware.do' },
+  { icon: Mail, label: 'Email', value: 'hello@auronsuite.com' },
   { icon: Clock, label: 'Horario', value: 'Lunes a viernes, 9:00 AM – 6:00 PM' },
 ]
 
@@ -28,7 +28,7 @@ export function ContactPage() {
       '',
       message,
     ].join('\n')
-    const mailto = `mailto:hello@auronsoftware.do?subject=${encodeURIComponent(subject || 'Contacto desde el sitio')}&body=${encodeURIComponent(body)}`
+    const mailto = `mailto:hello@auronsuite.com?subject=${encodeURIComponent(subject || 'Contacto desde el sitio')}&body=${encodeURIComponent(body)}`
     window.location.href = mailto
   }
 
@@ -145,7 +145,7 @@ export function ContactPage() {
                   Enviar mensaje
                 </Button>
                 <p className="text-xs text-[var(--auron-text-tertiary)]">
-                  El formulario abre tu cliente de correo con el mensaje listo para enviar a hello@auronsoftware.do.
+                  El formulario abre tu cliente de correo con el mensaje listo para enviar a hello@auronsuite.com.
                 </p>
               </form>
             </motion.div>

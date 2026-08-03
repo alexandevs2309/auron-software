@@ -28,7 +28,6 @@ src/
   styles/       # auron.css — design tokens y estilos globales
 public/         # favicon, og-image, sitemap.xml, robots.txt, manifest, 404.html, CNAME
 dist/           # build de producción
-.github/workflows/deploy.yml   # deploy a GitHub Pages
 ```
 
 ## Comandos
@@ -66,18 +65,16 @@ docker run --rm -v $PWD:/app -w /app node:22-alpine sh -c "chown -R 1000:1000 di
 - Meta por ruta vía `src/components/seo.tsx` (title, description, canonical, OG, robots, JSON-LD).
 - `public/sitemap.xml`, `public/robots.txt`, `public/manifest.webmanifest`.
 - `public/og-image.png` (1200×630) para preview de redes.
-- `public/404.html` = copia de `index.html` (fallback SPA en GitHub Pages).
+- `public/404.html` = copia de `index.html` (fallback SPA).
 - Las páginas legales (`/privacy`, `/terms`, `/security`) están marcadas `noindex`.
 
 ## Deploy
 
-Push a `main` dispara el workflow `.github/workflows/deploy.yml`, que construye y publica
-en **GitHub Pages**. Pasos para activarlo:
+El sitio se sirve en **Cloudflare Pages** (conectado al repo de GitHub). Push a `main`
+dispara el redeploy automático en `https://auronsuite.com`.
 
-1. GitHub → **Settings → Pages** → Source: **GitHub Actions**.
-2. Añadir dominio personalizado `auronsuite.com` (el `CNAME` ya está en el repo).
-3. DNS: `CNAME auronsuite.com → <usuario>.github.io`.
-4. Google Search Console: verificar el dominio y enviar `https://auronsuite.com/sitemap.xml`.
+- DNS: `auronsuite.com` apuntando a Cloudflare Pages.
+- Google Search Console: verificar el dominio y enviar `https://auronsuite.com/sitemap.xml`.
 
 ## Convenciones
 

@@ -10,7 +10,7 @@ const info = [
   { icon: Clock, label: 'Horario', value: 'Lunes a viernes, 9:00 AM – 6:00 PM' },
 ]
 
-const CONTACT_ENDPOINT = 'https://api.auronsuite.com/api/contact/'
+const CONTACT_ENDPOINT = 'https://api.auronsuite.com/api/settings/contact/presentation/'
 
 export function ContactPage() {
   const ref = useRef<HTMLDivElement>(null)
@@ -38,13 +38,11 @@ export function ContactPage() {
         body: JSON.stringify({
           name: `${firstName} ${lastName}`.trim() || 'Sin nombre',
           email,
-          subject: subject || 'Contacto desde el sitio',
-          message,
+          message: subject ? `Asunto: ${subject}\n\n${message}` : message,
           website: botRef.current?.value ?? '',
         }),
       })
-      const data = await res.json()
-      if (!res.ok || !data.success) throw new Error('contact_error')
+      if (!res.ok) throw new Error('contact_error')
       setFirstName('')
       setLastName('')
       setEmail('')

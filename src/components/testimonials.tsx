@@ -82,8 +82,8 @@ export function Testimonials() {
   const label = lang === 'es' ? 'Clientes' : 'Customers'
   const title = lang === 'es' ? 'Negocios que ya operan con Auron' : 'Businesses already running on Auron'
   const description = lang === 'es'
-    ? 'Resultados reales de operaciones de servicio que usan nuestras plataformas.'
-    : 'Real results from service operations using our platforms.'
+    ? 'Cómo se benefician las operaciones de servicio que usan nuestras plataformas.'
+    : 'How service operations benefit from using our platforms.'
 
   return (
     <Section id="customers">
@@ -126,6 +126,11 @@ export function Testimonials() {
           )
         })}
       </div>
+      <p className="mt-10 text-center text-xs max-w-xl mx-auto" style={{ color: 'var(--auron-text-tertiary)' }}>
+        {lang === 'es'
+          ? 'Los casos son ilustrativos y las personas presentadas representan perfiles típicos de clientes, no individuos reales.'
+          : 'Cases are illustrative and the people shown represent typical customer profiles, not real individuals.'}
+      </p>
     </Section>
   )
 }

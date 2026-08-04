@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Navbar } from './navbar'
 import { Footer } from './footer'
 import { Analytics } from './analytics'
+import { WhatsAppButton } from './whatsapp-button'
 
 const NAV_OFFSET = 88
 
@@ -40,6 +41,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }

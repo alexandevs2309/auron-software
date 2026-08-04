@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AURON Suite — Blog</title>
+    <link>https://auronsuite.com/blog</link>
+    <atom:link href="https://auronsuite.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Notas sobre tecnología, negocios y el desarrollo de Auron Software.</description>
+    <language>es-do</language>
+    <lastBuildDate>Mon, 04 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <ttl>1440</ttl>
+    <item>
+      <title>El futuro de la tecnología en restaurantes en 2026</title>
+      <link>https://auronsuite.com/blog/el-futuro-de-la-tecnologia-en-restaurantes-2026</link>
+      <guid>https://auronsuite.com/blog/el-futuro-de-la-tecnologia-en-restaurantes-2026</guid>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <description>Cómo la IA, la automatización y las plataformas unificadas están transformando la industria restaurantera.</description>
+    </item>
+    <item>
+      <title>Cómo construimos software empresarial que perdura</title>
+      <link>https://auronsuite.com/blog/como-construimos-software-empresarial-que-perdura</link>
+      <guid>https://auronsuite.com/blog/como-construimos-software-empresarial-que-perdura</guid>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <description>Nuestros principios de ingeniería para construir sistemas de software escalables y mantenibles.</description>
+    </item>
+    <item>
+      <title>Por qué tu negocio necesita un ecosistema de software unificado</title>
+      <link>https://auronsuite.com/blog/por-que-tu-negocio-necesita-un-ecosistema-de-software-unificado</link>
+      <guid>https://auronsuite.com/blog/por-que-tu-negocio-necesita-un-ecosistema-de-software-unificado</guid>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+      <description>Los costos ocultos de usar herramientas desconectadas y cómo una plataforma unificada los resuelve.</description>
+    </item>
+    <item>
+      <title>Guía de transformación digital para proveedores de salud</title>
+      <link>https://auronsuite.com/blog/guia-de-transformacion-digital-para-proveedores-de-salud</link>
+      <guid>https://auronsuite.com/blog/guia-de-transformacion-digital-para-proveedores-de-salud</guid>
+      <pubDate>Fri, 12 Dec 2025 00:00:00 +0000</pubDate>
+      <description>Pasos prácticos para pasar de operaciones en papel a flujos de trabajo digitales modernos.</description>
+    </item>
+    <item>
+      <title>Cómo construimos Auron Suite: un SaaS multinegocio para salones</title>
+      <link>https://auronsuite.com/blog/como-construimos-auron-suite-saas-multinegocio-para-salones</link>
+      <guid>https://auronsuite.com/blog/como-construimos-auron-suite-saas-multinegocio-para-salones</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
+      <description>De Django y Angular a las ganancias por período de pago: las decisiones detrás de la plataforma.</description>
+    </item>
+    <item>
+      <title>El auge de los hoteles inteligentes: tecnología en la hospitalidad</title>
+      <link>https://auronsuite.com/blog/el-auge-de-los-hoteles-inteligentes-tecnologia-en-la-hospitalidad</link>
+      <guid>https://auronsuite.com/blog/el-auge-de-los-hoteles-inteligentes-tecnologia-en-la-hospitalidad</guid>
+      <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
+      <description>Cómo los hoteles usan la tecnología para mejorar la experiencia del huésped y optimizar las operaciones.</description>
+    </item>
+  </channel>
+</rss>

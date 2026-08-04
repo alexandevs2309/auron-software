@@ -19,6 +19,7 @@ const PrivacyPage = lazy(() => import('./pages/Legal').then(m => ({ default: m.P
 const TermsPage = lazy(() => import('./pages/Legal').then(m => ({ default: m.TermsPage })))
 const SecurityPage = lazy(() => import('./pages/Legal').then(m => ({ default: m.SecurityPage })))
 const ComingSoonPage = lazy(() => import('./pages/ComingSoon').then(m => ({ default: m.ComingSoonPage })))
+const NotFoundPage = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFoundPage })))
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -41,6 +42,7 @@ createRoot(document.getElementById('root')!).render(
                   <Route path="/privacy" element={<PrivacyPage />} />
                   <Route path="/terms" element={<TermsPage />} />
                   <Route path="/security" element={<SecurityPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
             </Suspense>

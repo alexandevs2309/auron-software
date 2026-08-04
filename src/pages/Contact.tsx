@@ -10,7 +10,7 @@ const info = [
   { icon: Clock, label: 'Horario', value: 'Lunes a viernes, 9:00 AM – 6:00 PM' },
 ]
 
-const WEB3FORMS_ACCESS_KEY = '43a2aad1-05e8-4bf6-892f-1895859bde32'
+const CONTACT_ENDPOINT = 'https://api.auronsuite.com/api/contact/'
 
 export function ContactPage() {
   const ref = useRef<HTMLDivElement>(null)
@@ -28,20 +28,23 @@ export function ContactPage() {
     e.preventDefault()
     setStatus('sending')
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          botcheck: botRef.current?.value ?? '',
-          subject: subject || 'Contacto desde el sitio',
-          from_name: `${firstName} ${lastName}`.trim() || 'Sin nombre',
+          name: `${firstName} ${lastName}`.trim() || 'Sin nombre',
           email,
+          subject: subject || 'Contacto desde el sitio',
           message,
+          website: botRef.current?.value ?? '',
         }),
       })
       const data = await res.json()
-      if (!data.success) throw new Error('web3forms_error')
+      if (!res.ok || !data.success) throw new Error('contact_error')
       setFirstName('')
       setLastName('')
       setEmail('')

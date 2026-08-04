@@ -28,6 +28,24 @@ export function AboutPage() {
         title="Nosotros — AURON Suite, la plataforma de Auron Software"
         description="AURON Suite es la plataforma que agrupa Beauty Edition, Restaurant OS, Health y Hospitality. Conoce nuestra historia, valores y roadmap. Hecho en República Dominicana."
         path="/about"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'Auron Software EIRL',
+          alternateName: 'AURON Suite',
+          url: 'https://auronsuite.com',
+          logo: 'https://auronsuite.com/favicon.svg',
+          email: 'ventas@auronsuite.com',
+          foundingLocation: { '@type': 'Country', name: 'Dominican Republic' },
+          address: { '@type': 'PostalAddress', addressCountry: 'DO' },
+          contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'sales',
+            email: 'ventas@auronsuite.com',
+            availableLanguage: ['es', 'en'],
+          },
+          sameAs: [],
+        }}
       />
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
         <div className="absolute inset-0" style={{ background: 'var(--auron-gradient-1)' }} />

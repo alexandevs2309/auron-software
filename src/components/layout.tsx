@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Navbar } from './navbar'
 import { Footer } from './footer'
+import { Analytics } from './analytics'
 
 const NAV_OFFSET = 88
 
@@ -33,6 +34,7 @@ export function Layout() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Analytics />
       <Navbar />
       <main style={{ flex: 1 }}>
         <Outlet />

@@ -5,6 +5,7 @@ import { Container } from './container'
 import { Button } from './button'
 import { SectionBg } from './section-bg'
 import { HubMockup } from './hub-mockup'
+import { useLang } from '@/lib/i18n'
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -14,6 +15,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   const reduce = useReducedMotion()
+  const { t } = useLang()
 
   return (
     <section
@@ -34,7 +36,7 @@ export function Hero() {
             className="text-xs font-semibold tracking-[0.2em] uppercase"
             style={{ color: 'var(--auron-text-tertiary)' }}
           >
-            Auron Software · República Dominicana
+            {t('hero.eyebrow')}
           </motion.div>
 
           <motion.h1
@@ -44,9 +46,9 @@ export function Hero() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]"
             style={{ color: 'var(--auron-text)' }}
           >
-            Plataformas de gestión
+            {t('hero.title1')}
             <br />
-            para negocios de servicio
+            {t('hero.title2')}
           </motion.h1>
 
           <motion.p
@@ -56,9 +58,7 @@ export function Hero() {
             className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-[var(--auron-text-secondary)]"
             style={{ lineHeight: 1.7 }}
           >
-            Auron Software diseña y opera software empresarial para salones, restaurantes, clínicas
-            y hoteles. Un núcleo compartido con facturación electrónica DGII e-CF nativa y operación
-            local que no depende de internet.
+            {t('hero.subtitle')}
           </motion.p>
 
           <motion.div
@@ -68,10 +68,10 @@ export function Hero() {
             className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button variant="primary" size="lg" as="a" href="/products">
-              Conocer las plataformas <ArrowRight className="w-4 h-4" />
+              {t('common.learnMore')} <ArrowRight className="w-4 h-4" />
             </Button>
             <Button variant="ghost" size="lg" as="a" href="/contact">
-              Contáctanos
+              {t('common.contactCta')}
             </Button>
           </motion.div>
 

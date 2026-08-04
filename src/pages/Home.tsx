@@ -5,6 +5,7 @@ import { AISection } from '../components/ai-section'
 import { Mission } from '../components/mission'
 import { CoreDiagram } from '../components/core-diagram'
 import { ServicesSection } from '../components/services-section'
+import { Testimonials } from '../components/testimonials'
 import { Faq } from '../components/faq'
 import { CTA } from '../components/cta'
 import { Seo } from '../components/seo'
@@ -54,6 +55,7 @@ export function HomePage() {
       <Mission />
       <CoreDiagram />
       <ServicesSection />
+      <Testimonials />
       <Faq />
       <CTA />
     </>

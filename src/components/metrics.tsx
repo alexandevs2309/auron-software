@@ -1,13 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { motion, useInView, animate, useReducedMotion } from 'framer-motion'
 import { Section } from './section'
-
-const metrics = [
-  { value: '100%', label: 'Cumplimiento fiscal DGII e-CF' },
-  { value: '0', label: 'Dependencia de internet para operar' },
-  { value: 'RD', label: 'Datos y desarrollo en República Dominicana' },
-  { value: 'e-CF', label: 'Facturación electrónica nativa' },
-]
+import { useLang } from '@/lib/i18n'
 
 function MetricValue({ value, active, delay }: { value: string; active: boolean; delay: number }) {
   const numRef = useRef<HTMLSpanElement>(null)
@@ -55,6 +49,14 @@ function MetricValue({ value, active, delay }: { value: string; active: boolean;
 export function Metrics() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { t } = useLang()
+
+  const metrics = [
+    { value: '100%', label: t('metrics.compliance') },
+    { value: '0', label: t('metrics.offline') },
+    { value: 'RD', label: t('metrics.local') },
+    { value: 'e-CF', label: t('metrics.native') },
+  ]
 
   return (
     <Section className="py-16 md:py-20">

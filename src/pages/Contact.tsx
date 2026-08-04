@@ -1,28 +1,51 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { Mail, Clock } from 'lucide-react'
 import { Container } from '../components/container'
 import { Button } from '../components/button'
 import { Seo } from '../components/seo'
-
-const info = [
-  { icon: Mail, label: 'Email', value: 'ventas@auronsuite.com' },
-  { icon: Clock, label: 'Horario', value: 'Lunes a viernes, 9:00 AM – 6:00 PM' },
-]
+import { useLang } from '../lib/i18n'
 
 const CONTACT_ENDPOINT = 'https://api.auronsuite.com/api/settings/contact/presentation/'
+
+const subjectOptions = {
+  product: 'Consulta de producto',
+  custom: 'Desarrollo a la medida',
+  partnerships: 'Alianzas',
+  support: 'Soporte técnico',
+  other: 'Otro',
+}
+
+type SubmitStatus = 'idle' | 'sending' | 'success' | 'rateLimited' | 'error'
 
 export function ContactPage() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { lang } = useLang()
+  const { search } = useLocation()
+
+  const initialSubject = (() => {
+    const s = new URLSearchParams(search).get('subject')
+    if (!s) return ''
+    const value = s.replace(/-/g, ' ')
+    return Object.values(subjectOptions).includes(value) ? value : ''
+  })()
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
+  const [subject, setSubject] = useState(initialSubject)
   const [message, setMessage] = useState('')
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<SubmitStatus>('idle')
   const botRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    const s = new URLSearchParams(search).get('subject')
+    if (!s) return
+    const value = s.replace(/-/g, ' ')
+    if (Object.values(subjectOptions).includes(value)) setSubject(value)
+  }, [search])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -36,12 +59,13 @@ export function ContactPage() {
           'X-Requested-With': 'XMLHttpRequest',
         },
         body: JSON.stringify({
-          name: `${firstName} ${lastName}`.trim() || 'Sin nombre',
+          name: `${firstName} ${lastName}`.trim() || (lang === 'es' ? 'Sin nombre' : 'No name'),
           email,
           message: subject ? `Asunto: ${subject}\n\n${message}` : message,
           website: botRef.current?.value ?? '',
         }),
       })
+      if (res.status === 429) throw new Error('rate_limited')
       if (!res.ok) throw new Error('contact_error')
       setFirstName('')
       setLastName('')
@@ -49,25 +73,59 @@ export function ContactPage() {
       setSubject('')
       setMessage('')
       setStatus('success')
-    } catch {
+    } catch (err) {
+      const isRateLimited = err instanceof Error && err.message === 'rate_limited'
+      if (isRateLimited) {
+        setStatus('rateLimited')
+        return
+      }
       setStatus('error')
+      const body = encodeURIComponent(
+        (lang === 'es'
+          ? `Hola, mi nombre es ${firstName} ${lastName}.\n\nAsunto: ${subject || 'Consulta'}\n\n${message}`
+          : `Hello, my name is ${firstName} ${lastName}.\n\nSubject: ${subject || 'Inquiry'}\n\n${message}`),
+      )
+      window.location.href = `mailto:ventas@auronsuite.com?subject=${encodeURIComponent(subject || 'Contacto')}&body=${body}`
     }
   }
 
   return (
     <>
       <Seo
-        title="Contacto — Auron Software"
-        description="Contáctanos para conocer las plataformas de Auron Software, hacer una consulta de producto o conversar sobre un proyecto a la medida. Respondemos en 24 horas."
+        title={lang === 'es' ? 'Contacto — Auron Software' : 'Contact — Auron Software'}
+        description={lang === 'es'
+          ? 'Contáctanos para conocer las plataformas de Auron Software, hacer una consulta de producto o conversar sobre un proyecto a la medida. Respondemos en 24 horas.'
+          : 'Contact us to learn about Auron Software platforms, ask about a product or discuss a custom project. We reply within 24 hours.'}
         path="/contact"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          name: lang === 'es' ? 'Contacto' : 'Contact',
+          url: 'https://auronsuite.com/contact',
+          mainEntity: {
+            '@type': 'Organization',
+            name: 'Auron Software EIRL',
+            email: 'ventas@auronsuite.com',
+            contactPoint: {
+              '@type': 'ContactPoint',
+              contactType: 'sales',
+              email: 'ventas@auronsuite.com',
+              availableLanguage: ['es', 'en'],
+            },
+          },
+        }}
       />
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
         <div className="absolute inset-0" style={{ background: 'var(--auron-gradient-1)' }} />
         <Container className="relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.05]">Contacto</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.05]">
+              {lang === 'es' ? 'Contacto' : 'Contact'}
+            </h1>
             <p className="mt-6 text-lg md:text-xl max-w-xl text-[var(--auron-text-secondary)]" style={{ lineHeight: 1.7 }}>
-              ¿Tienes un proyecto en mente? Cuéntanos y te responderemos dentro de 24 horas.
+              {lang === 'es'
+                ? '¿Tienes un proyecto en mente? Cuéntanos y te responderemos dentro de 24 horas.'
+                : 'Do you have a project in mind? Tell us about it and we will reply within 24 hours.'}
             </p>
           </div>
         </Container>
@@ -77,7 +135,10 @@ export function ContactPage() {
         <Container>
           <div ref={ref} className="grid lg:grid-cols-5 gap-12 lg:gap-20">
             <div className="lg:col-span-2 space-y-8">
-              {info.map((item, i) => (
+              {[
+                { icon: Mail, label: lang === 'es' ? 'Email' : 'Email', value: 'ventas@auronsuite.com' },
+                { icon: Clock, label: lang === 'es' ? 'Horario' : 'Hours', value: lang === 'es' ? 'Lunes a viernes, 9:00 AM – 6:00 PM' : 'Monday to Friday, 9:00 AM – 6:00 PM' },
+              ].map((item, i) => (
                 <motion.div
                   key={item.label}
                   initial={{ opacity: 0, y: 20 }}
@@ -106,24 +167,24 @@ export function ContactPage() {
                 <input ref={botRef} type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                 <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">Nombre</label>
+                    <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">{lang === 'es' ? 'Nombre' : 'First name'}</label>
                     <input
                       type="text"
                       required
                       value={firstName}
                       onChange={e => setFirstName(e.target.value)}
                       className="w-full h-12 px-4 rounded-xl border border-[var(--auron-border-input)] bg-[var(--auron-card-bg)] text-sm text-[var(--auron-text)] placeholder:text-[var(--auron-text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--auron-accent)] focus:border-transparent"
-                      placeholder="Tu nombre"
+                      placeholder={lang === 'es' ? 'Tu nombre' : 'Your name'}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">Apellido</label>
+                    <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">{lang === 'es' ? 'Apellido' : 'Last name'}</label>
                     <input
                       type="text"
                       value={lastName}
                       onChange={e => setLastName(e.target.value)}
                       className="w-full h-12 px-4 rounded-xl border border-[var(--auron-border-input)] bg-[var(--auron-card-bg)] text-sm text-[var(--auron-text)] placeholder:text-[var(--auron-text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--auron-accent)] focus:border-transparent"
-                      placeholder="Tu apellido"
+                      placeholder={lang === 'es' ? 'Tu apellido' : 'Your last name'}
                     />
                   </div>
                 </div>
@@ -139,29 +200,29 @@ export function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">Asunto</label>
+                  <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">{lang === 'es' ? 'Asunto' : 'Subject'}</label>
                   <select
                     value={subject}
                     onChange={e => setSubject(e.target.value)}
                     className="w-full h-12 px-4 rounded-xl border border-[var(--auron-border-input)] bg-[var(--auron-card-bg)] text-sm text-[var(--auron-text)] focus:outline-none focus:ring-2 focus:ring-[var(--auron-accent)] focus:border-transparent"
                   >
-                    <option value="">Selecciona un asunto</option>
-                    <option value="Consulta de producto">Consulta de producto</option>
-                    <option value="Desarrollo a la medida">Desarrollo a la medida</option>
-                    <option value="Alianzas">Alianzas</option>
-                    <option value="Soporte técnico">Soporte técnico</option>
-                    <option value="Otro">Otro</option>
+                    <option value="">{lang === 'es' ? 'Selecciona un asunto' : 'Select a subject'}</option>
+                    <option value={subjectOptions.product}>{subjectOptions.product}</option>
+                    <option value={subjectOptions.custom}>{subjectOptions.custom}</option>
+                    <option value={subjectOptions.partnerships}>{subjectOptions.partnerships}</option>
+                    <option value={subjectOptions.support}>{subjectOptions.support}</option>
+                    <option value={subjectOptions.other}>{subjectOptions.other}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">Mensaje</label>
+                  <label className="block text-sm font-medium text-[var(--auron-text)] mb-2">{lang === 'es' ? 'Mensaje' : 'Message'}</label>
                   <textarea
                     rows={5}
                     required
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[var(--auron-border-input)] bg-[var(--auron-card-bg)] text-sm text-[var(--auron-text)] placeholder:text-[var(--auron-text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--auron-accent)] focus:border-transparent resize-none"
-                    placeholder="Cuéntanos sobre tu proyecto..."
+                    placeholder={lang === 'es' ? 'Cuéntanos sobre tu proyecto...' : 'Tell us about your project...'}
                   />
                 </div>
                 {status === 'success' && (
@@ -169,7 +230,19 @@ export function ContactPage() {
                     role="status"
                     className="rounded-xl border border-[var(--auron-accent)]/30 bg-[var(--auron-accent)]/10 px-4 py-3 text-sm font-medium text-[var(--auron-accent-text)]"
                   >
-                    ¡Mensaje enviado! Te responderemos en menos de 24 horas.
+                    {lang === 'es'
+                      ? '¡Mensaje enviado! Te responderemos en menos de 24 horas.'
+                      : 'Message sent! We will reply within 24 hours.'}
+                  </div>
+                )}
+                {status === 'rateLimited' && (
+                  <div
+                    role="alert"
+                    className="rounded-xl border border-[var(--auron-warm-300)] bg-[var(--auron-warm-100)] px-4 py-3 text-sm text-[var(--auron-text)]"
+                  >
+                    {lang === 'es'
+                      ? 'Enviaste varios mensajes en poco tiempo. Espera unos minutos e intenta de nuevo.'
+                      : 'You sent several messages in a short time. Wait a few minutes and try again.'}
                   </div>
                 )}
                 {status === 'error' && (
@@ -177,15 +250,21 @@ export function ContactPage() {
                     role="alert"
                     className="rounded-xl border border-[var(--auron-warm-300)] bg-[var(--auron-warm-100)] px-4 py-3 text-sm text-[var(--auron-text)]"
                   >
-                    Hubo un error al enviar tu mensaje. Intenta de nuevo o escríbenos directo a{' '}
+                    {lang === 'es'
+                      ? 'Hubo un error al enviar tu mensaje. Se abrió tu correo con el mensaje listo; envía el correo o escribe directo a'
+                      : 'There was an error sending your message. Your email app opened with the message ready; send it or write directly to'}{' '}
                     <span className="font-medium">ventas@auronsuite.com</span>.
                   </div>
                 )}
                 <Button variant="primary" size="lg" className="w-full sm:w-auto" type="submit" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
+                  {status === 'sending'
+                    ? (lang === 'es' ? 'Enviando…' : 'Sending…')
+                    : (lang === 'es' ? 'Enviar mensaje' : 'Send message')}
                 </Button>
                 <p className="text-xs text-[var(--auron-text-tertiary)]">
-                  Al enviar, tu mensaje llega directo a ventas@auronsuite.com. Respondemos en menos de 24 horas.
+                  {lang === 'es'
+                    ? 'Al enviar, tu mensaje llega directo a ventas@auronsuite.com. Respondemos en menos de 24 horas.'
+                    : 'When you send, your message goes straight to ventas@auronsuite.com. We reply within 24 hours.'}
                 </p>
               </form>
             </motion.div>

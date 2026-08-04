@@ -59,6 +59,62 @@ export function ServicesPage() {
         title="Servicios — Desarrollo a la medida, IA y Cloud | Auron Software"
         description="Servicios de software de Auron: desarrollo a la medida con Django y React, inteligencia artificial predictiva, soluciones cloud, automatización e integración DGII e-CF."
         path="/services"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Desarrollo de software a la medida',
+            serviceType: 'Software development',
+            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
+            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
+            url: 'https://auronsuite.com/services#custom',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Inteligencia Artificial',
+            serviceType: 'AI / Machine learning',
+            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
+            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
+            url: 'https://auronsuite.com/services#ai',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Soluciones Cloud',
+            serviceType: 'Cloud infrastructure',
+            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
+            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
+            url: 'https://auronsuite.com/services#cloud',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Automatización',
+            serviceType: 'Business automation',
+            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
+            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
+            url: 'https://auronsuite.com/services#automation',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Integración de sistemas',
+            serviceType: 'System integration',
+            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
+            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
+            url: 'https://auronsuite.com/services#integration',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Consultoría tecnológica',
+            serviceType: 'Technology consulting',
+            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
+            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
+            url: 'https://auronsuite.com/services#consulting',
+          },
+        ]}
       />
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
         <div className="absolute inset-0" style={{ background: 'var(--auron-gradient-1)' }} />

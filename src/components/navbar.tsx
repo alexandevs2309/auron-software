@@ -1,28 +1,31 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react'
+import { Menu, X, Sun, Moon, ChevronDown, Languages } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Container } from './container'
 import { Button } from './button'
 import { useTheme } from '@/lib/theme'
-
-const links = [
-  { label: 'Productos', href: '/products' },
-  { label: 'Servicios', href: '/services' },
-]
-
-const companyLinks = [
-  { label: 'Nosotros', href: '/about' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contacto', href: '/contact' },
-]
+import { useLang } from '@/lib/i18n'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { pathname } = useLocation()
   const { theme, toggleTheme } = useTheme()
+  const { lang, setLang, t } = useLang()
+
+  const links = [
+    { label: t('nav.products'), href: '/products' },
+    { label: t('nav.services'), href: '/services' },
+    { label: t('nav.pricing'), href: '/pricing' },
+  ]
+
+  const companyLinks = [
+    { label: t('nav.about'), href: '/about' },
+    { label: t('nav.blog'), href: '/blog' },
+    { label: t('nav.contact'), href: '/contact' },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -36,8 +39,8 @@ export function Navbar() {
     <button
       onClick={toggleTheme}
       className="auron-focus-ring cursor-pointer p-2.5 rounded-xl text-[var(--auron-text-secondary)] hover:text-[var(--auron-text)] hover:bg-[var(--auron-bg-secondary)] transition-colors duration-200"
-      aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
-      title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+      aria-label={theme === 'dark' ? t('nav.theme.light') : t('nav.theme.dark')}
+      title={theme === 'dark' ? t('nav.theme.lightTitle') : t('nav.theme.darkTitle')}
     >
       <motion.span
         key={theme}
@@ -48,6 +51,18 @@ export function Navbar() {
       >
         {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
       </motion.span>
+    </button>
+  )
+
+  const langButton = (
+    <button
+      onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+      className="auron-focus-ring cursor-pointer flex items-center gap-1.5 p-2.5 rounded-xl text-[var(--auron-text-secondary)] hover:text-[var(--auron-text)] hover:bg-[var(--auron-bg-secondary)] transition-colors duration-200"
+      aria-label={t('nav.lang.toggle')}
+      title={t('nav.lang.label')}
+    >
+      <Languages className="w-4 h-4" />
+      <span className="text-xs font-semibold uppercase tracking-wide">{lang}</span>
     </button>
   )
 
@@ -92,9 +107,8 @@ export function Navbar() {
                 aria-haspopup="true"
                 aria-expanded={false}
               >
-                Compañía
-                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
-              </button>
+                {t('nav.company')}
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />              </button>
               <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
                 <div className="w-48 rounded-xl border border-[var(--auron-card-border)] bg-[var(--auron-card-bg)] shadow-lg py-2">
                   {companyLinks.map((link) => (
@@ -117,16 +131,17 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
+            {langButton}
             {themeButton}
             <Button variant="primary" size="sm" as="a" href="/contact">
-              Contáctanos
+              {t('nav.contactCta')}
             </Button>
           </div>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="auron-focus-ring cursor-pointer md:hidden p-2 rounded-lg text-[var(--auron-text-secondary)] hover:text-[var(--auron-text)]"
-            aria-label="Abrir o cerrar menú"
+            aria-label={t('nav.menu.toggle')}
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -160,9 +175,10 @@ export function Navbar() {
                 ))}
               </div>
               <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-[var(--auron-border-light)]">
+                {langButton}
                 {themeButton}
                 <Button variant="primary" size="md" as="a" href="/contact" className="w-full">
-                  Contáctanos
+                  {t('nav.contactCta')}
                 </Button>
               </div>
             </Container>

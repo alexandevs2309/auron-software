@@ -1,27 +1,9 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { BrainCircuit, TrendingUp, CalendarClock, Sparkles } from 'lucide-react'
+import { BrainCircuit, TrendingUp, CalendarClock, Sparkles, ArrowRight } from 'lucide-react'
 import { Section, SectionHeader } from './section'
 import { Button } from './button'
-import { ArrowRight } from 'lucide-react'
-
-const highlights = [
-  {
-    icon: TrendingUp,
-    title: 'Proyección de ganancias',
-    description: 'Modelos ligeros que estiman el ingreso del próximo período a partir del historial real de tu negocio.',
-  },
-  {
-    icon: CalendarClock,
-    title: 'Carga laboral anticipada',
-    description: 'Anticipa semanas ocupadas o flojas para ajustar horarios, compras e inventario con tiempo.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Actualización automática',
-    description: 'Los modelos se re-entrenan solos cada semana con tus datos, sin intervención manual.',
-  },
-]
+import { useLang } from '@/lib/i18n'
 
 const predicted = [40, 48, 44, 56, 52, 62, 58, 70, 66, 78, 74, 86]
 const actual = [38, 46, 47, 52, 55, 60, 63, 67, 72, 75, 80, 84]
@@ -29,13 +11,40 @@ const actual = [38, 46, 47, 52, 55, 60, 63, 67, 72, 75, 80, 84]
 export function AISection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { lang } = useLang()
+
+  const highlights = [
+    {
+      icon: TrendingUp,
+      title: lang === 'es' ? 'Proyección de ganancias' : 'Profit projection',
+      description: lang === 'es'
+        ? 'Modelos ligeros que estiman el ingreso del próximo período a partir del historial real de tu negocio.'
+        : 'Lightweight models that estimate next period revenue from your business real history.',
+    },
+    {
+      icon: CalendarClock,
+      title: lang === 'es' ? 'Carga laboral anticipada' : 'Workload forecast',
+      description: lang === 'es'
+        ? 'Anticipa semanas ocupadas o flojas para ajustar horarios, compras e inventario con tiempo.'
+        : 'Anticipate busy or slow weeks to adjust schedules, purchases and inventory in advance.',
+    },
+    {
+      icon: Sparkles,
+      title: lang === 'es' ? 'Actualización automática' : 'Automatic updates',
+      description: lang === 'es'
+        ? 'Los modelos se re-entrenan solos cada semana con tus datos, sin intervención manual.'
+        : 'Models retrain themselves weekly with your data, with no manual intervention.',
+    },
+  ]
 
   return (
     <Section id="ai">
       <SectionHeader
-        label="Inteligencia Artificial"
-        title="Tu negocio, un paso adelante"
-        description="En AURON Suite integramos inteligencia artificial ligera en cada Edition y en nuestros servicios para predecir ganancias, ventas y carga laboral — para que decidas con datos, no con corazonadas."
+        label={lang === 'es' ? 'Inteligencia Artificial' : 'Artificial Intelligence'}
+        title={lang === 'es' ? 'Tu negocio, un paso adelante' : 'Your business, one step ahead'}
+        description={lang === 'es'
+          ? 'En AURON Suite integramos inteligencia artificial ligera en cada Edition y en nuestros servicios para predecir ganancias, ventas y carga laboral — para que decidas con datos, no con corazonadas.'
+          : 'AURON Suite embeds lightweight AI in every Edition and service to predict profits, sales and workload — so you decide with data, not hunches.'}
       />
 
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -70,13 +79,17 @@ export function AISection() {
             <div>
               <div className="flex items-center gap-2">
                 <BrainCircuit className="w-4 h-4" style={{ color: 'var(--auron-accent-text)' }} />
-                <span className="text-sm font-semibold text-[var(--auron-text)]">Predicción de ganancias</span>
+                <span className="text-sm font-semibold text-[var(--auron-text)]">
+                  {lang === 'es' ? 'Predicción de ganancias' : 'Profit forecast'}
+                </span>
               </div>
-              <span className="text-xs text-[var(--auron-text-tertiary)] mt-1 block">Próximo período · estimado vs. real</span>
+              <span className="text-xs text-[var(--auron-text-tertiary)] mt-1 block">
+                {lang === 'es' ? 'Próximo período · estimado vs. real' : 'Next period · estimated vs. actual'}
+              </span>
             </div>
             <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border" style={{ color: 'var(--auron-accent-text)', borderColor: 'var(--auron-border)' }}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--auron-accent)' }} />
-              Modelo en producción
+              {lang === 'es' ? 'Modelo en producción' : 'Model in production'}
             </span>
           </div>
 
@@ -137,10 +150,12 @@ export function AISection() {
           <div className="mt-5 flex items-center justify-between gap-4">
             <div className="flex items-center gap-5">
               <span className="flex items-center gap-2 text-xs text-[var(--auron-text-secondary)]">
-                <span className="w-4 h-0.5 rounded-full" style={{ background: 'var(--auron-gold)' }} /> Real
+                <span className="w-4 h-0.5 rounded-full" style={{ background: 'var(--auron-gold)' }} />
+                {lang === 'es' ? 'Real' : 'Actual'}
               </span>
               <span className="flex items-center gap-2 text-xs text-[var(--auron-text-secondary)]">
-                <span className="w-4 h-0.5 rounded-full" style={{ background: 'var(--auron-accent)' }} /> Predicción
+                <span className="w-4 h-0.5 rounded-full" style={{ background: 'var(--auron-accent)' }} />
+                {lang === 'es' ? 'Predicción' : 'Forecast'}
               </span>
             </div>
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: 'var(--auron-accent-text)' }}>
@@ -157,7 +172,7 @@ export function AISection() {
         className="mt-12 text-center"
       >
         <Button variant="secondary" size="md" as="a" href="/services#ai">
-          Conocer el servicio de IA <ArrowRight className="w-4 h-4" />
+          {lang === 'es' ? 'Conocer el servicio de IA' : 'Learn about the AI service'} <ArrowRight className="w-4 h-4" />
         </Button>
       </motion.div>
     </Section>

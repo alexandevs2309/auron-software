@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { Mail, Clock } from 'lucide-react'
@@ -9,13 +9,13 @@ import { useLang } from '../lib/i18n'
 
 const CONTACT_ENDPOINT = 'https://api.auronsuite.com/api/settings/contact/presentation/'
 
-const subjectOptions = {
-  product: 'Consulta de producto',
-  custom: 'Desarrollo a la medida',
-  partnerships: 'Alianzas',
-  support: 'Soporte técnico',
-  other: 'Otro',
-}
+const baseSubjects: { value: string; es: string; en: string }[] = [
+  { value: 'Consulta de producto', es: 'Consulta de producto', en: 'Product inquiry' },
+  { value: 'Desarrollo a la medida', es: 'Desarrollo a la medida', en: 'Custom development' },
+  { value: 'Alianzas', es: 'Alianzas', en: 'Partnerships' },
+  { value: 'Soporte técnico', es: 'Soporte técnico', en: 'Technical support' },
+  { value: 'Otro', es: 'Otro', en: 'Other' },
+]
 
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'rateLimited' | 'error'
 
@@ -27,10 +27,15 @@ export function ContactPage() {
 
   const initialSubject = (() => {
     const s = new URLSearchParams(search).get('subject')
-    if (!s) return ''
-    const value = s.replace(/-/g, ' ')
-    return Object.values(subjectOptions).includes(value) ? value : ''
+    return s ? s.trim() : ''
   })()
+
+  const subjectOptions = useMemo(() => {
+    const custom = initialSubject && !baseSubjects.some((b) => b.value === initialSubject)
+      ? [{ value: initialSubject, label: initialSubject }]
+      : []
+    return [...custom, ...baseSubjects.map((b) => ({ value: b.value, label: b[lang] }))]
+  }, [initialSubject, lang])
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -39,13 +44,6 @@ export function ContactPage() {
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState<SubmitStatus>('idle')
   const botRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    const s = new URLSearchParams(search).get('subject')
-    if (!s) return
-    const value = s.replace(/-/g, ' ')
-    if (Object.values(subjectOptions).includes(value)) setSubject(value)
-  }, [search])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -207,11 +205,9 @@ export function ContactPage() {
                     className="w-full h-12 px-4 rounded-xl border border-[var(--auron-border-input)] bg-[var(--auron-card-bg)] text-sm text-[var(--auron-text)] focus:outline-none focus:ring-2 focus:ring-[var(--auron-accent)] focus:border-transparent"
                   >
                     <option value="">{lang === 'es' ? 'Selecciona un asunto' : 'Select a subject'}</option>
-                    <option value={subjectOptions.product}>{subjectOptions.product}</option>
-                    <option value={subjectOptions.custom}>{subjectOptions.custom}</option>
-                    <option value={subjectOptions.partnerships}>{subjectOptions.partnerships}</option>
-                    <option value={subjectOptions.support}>{subjectOptions.support}</option>
-                    <option value={subjectOptions.other}>{subjectOptions.other}</option>
+                    {subjectOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
                   </select>
                 </div>
                 <div>

@@ -6,123 +6,140 @@ import { Section, SectionHeader } from '../components/section'
 import { Button } from '../components/button'
 import { Seo } from '../components/seo'
 import { CTA } from '../components/cta'
+import { useLang } from '../lib/i18n'
 
-const services = [
+interface Localized {
+  title: string
+  description: string
+  features: string[]
+}
+
+interface Service {
+  id: string
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
+  es: Localized
+  en: Localized
+}
+
+const services: Service[] = [
   {
     id: 'custom',
     icon: Code2,
-    title: 'Desarrollo de software a la medida',
-    description: 'Diseñamos y construimos aplicaciones web y plataformas SaaS adaptadas a cómo funciona realmente tu negocio.',
-    features: ['Aplicaciones web y SaaS', 'Django + React / Angular', 'Sistemas multinegocio (multi-tenant)', 'Desarrollo de APIs e integración', 'MVP y prototipado rápido', 'Control de calidad y pruebas'],
+    es: {
+      title: 'Desarrollo de software a la medida',
+      description: 'Diseñamos y construimos aplicaciones web y plataformas SaaS adaptadas a cómo funciona realmente tu negocio.',
+      features: ['Aplicaciones web y SaaS', 'Django + React / Angular', 'Sistemas multinegocio (multi-tenant)', 'Desarrollo de APIs e integración', 'MVP y prototipado rápido', 'Control de calidad y pruebas'],
+    },
+    en: {
+      title: 'Custom software development',
+      description: 'We design and build web applications and SaaS platforms adapted to how your business really works.',
+      features: ['Web and SaaS applications', 'Django + React / Angular', 'Multi-business (multi-tenant) systems', 'API development and integration', 'MVP and fast prototyping', 'Quality control and testing'],
+    },
   },
   {
     id: 'ai',
     icon: BrainCircuit,
-    title: 'Inteligencia Artificial',
-    description: 'Machine learning ligero que predice resultados reales del negocio — ganancias, ventas y carga laboral.',
-    features: ['Pronóstico de ganancias y ventas', 'Predicción de carga laboral', 'Modelos ML ligeros (regresión y series de tiempo)', 'Actualizaciones semanales automáticas vía Celery', 'Paneles predictivos', 'Decisiones basadas en datos'],
+    es: {
+      title: 'Inteligencia Artificial',
+      description: 'Machine learning ligero que predice resultados reales del negocio — ganancias, ventas y carga laboral.',
+      features: ['Pronóstico de ganancias y ventas', 'Predicción de carga laboral', 'Modelos ML ligeros (regresión y series de tiempo)', 'Actualizaciones semanales automáticas vía Celery', 'Paneles predictivos', 'Decisiones basadas en datos'],
+    },
+    en: {
+      title: 'Artificial Intelligence',
+      description: 'Lightweight machine learning that predicts real business outcomes — profits, sales and workload.',
+      features: ['Profit and sales forecasting', 'Workload prediction', 'Lightweight ML models (regression and time series)', 'Automatic weekly updates via Celery', 'Predictive dashboards', 'Data-driven decisions'],
+    },
   },
   {
     id: 'cloud',
     icon: Cloud,
-    title: 'Soluciones Cloud',
-    description: 'Infraestructura contenedorizada diseñada para confiabilidad, seguridad y costo predecible.',
-    features: ['Docker y contenedores', 'Infraestructura AWS', 'Pipelines CI/CD', 'Despliegue y migración', 'Monitoreo y respaldos', 'Optimización de costos'],
+    es: {
+      title: 'Soluciones Cloud',
+      description: 'Infraestructura contenedorizada diseñada para confiabilidad, seguridad y costo predecible.',
+      features: ['Docker y contenedores', 'Infraestructura AWS', 'Pipelines CI/CD', 'Despliegue y migración', 'Monitoreo y respaldos', 'Optimización de costos'],
+    },
+    en: {
+      title: 'Cloud Solutions',
+      description: 'Containerized infrastructure designed for reliability, security and predictable cost.',
+      features: ['Docker and containers', 'AWS infrastructure', 'CI/CD pipelines', 'Deployment and migration', 'Monitoring and backups', 'Cost optimization'],
+    },
   },
   {
     id: 'automation',
     icon: Cog,
-    title: 'Automatización',
-    description: 'Elimina tareas repetitivas con procesos en segundo plano que corren mientras te enfocas en el negocio.',
-    features: ['Tareas en segundo plano con Celery', 'Reportes automatizados', 'Notificaciones y recordatorios', 'Procesamiento de documentos', 'Automatización de email', 'Sincronización programada de datos'],
+    es: {
+      title: 'Automatización',
+      description: 'Elimina tareas repetitivas con procesos en segundo plano que corren mientras te enfocas en el negocio.',
+      features: ['Tareas en segundo plano con Celery', 'Reportes automatizados', 'Notificaciones y recordatorios', 'Procesamiento de documentos', 'Automatización de email', 'Sincronización programada de datos'],
+    },
+    en: {
+      title: 'Automation',
+      description: 'Remove repetitive tasks with background processes that run while you focus on the business.',
+      features: ['Background tasks with Celery', 'Automated reports', 'Notifications and reminders', 'Document processing', 'Email automation', 'Scheduled data sync'],
+    },
   },
   {
     id: 'integration',
     icon: GitBranch,
-    title: 'Integración de sistemas',
-    description: 'Conecta tus herramientas, plataformas y fuentes de datos en un flujo unificado.',
-    features: ['Facturación DGII e-CF', 'Pasarelas de pago', 'Desarrollo de APIs REST', 'Sincronización de datos', 'Webhooks y flujos basados en eventos', 'Conectividad con terceros'],
+    es: {
+      title: 'Integración de sistemas',
+      description: 'Conecta tus herramientas, plataformas y fuentes de datos en un flujo unificado.',
+      features: ['Facturación DGII e-CF', 'Pasarelas de pago', 'Desarrollo de APIs REST', 'Sincronización de datos', 'Webhooks y flujos basados en eventos', 'Conectividad con terceros'],
+    },
+    en: {
+      title: 'System integration',
+      description: 'Connect your tools, platforms and data sources in a unified flow.',
+      features: ['DGII e-CF invoicing', 'Payment gateways', 'REST API development', 'Data synchronization', 'Webhooks and event-driven flows', 'Third-party connectivity'],
+    },
   },
   {
     id: 'consulting',
     icon: HeadphonesIcon,
-    title: 'Consultoría tecnológica',
-    description: 'Guía práctica para tomar las decisiones tecnológicas correctas para tu negocio.',
-    features: ['Roadmap tecnológico', 'Revisión y diseño de arquitectura', 'Estrategia de transformación digital', 'Buenas prácticas de seguridad', 'Capacitación técnica', 'Selección de proveedores y herramientas'],
+    es: {
+      title: 'Consultoría tecnológica',
+      description: 'Guía práctica para tomar las decisiones tecnológicas correctas para tu negocio.',
+      features: ['Roadmap tecnológico', 'Revisión y diseño de arquitectura', 'Estrategia de transformación digital', 'Buenas prácticas de seguridad', 'Capacitación técnica', 'Selección de proveedores y herramientas'],
+    },
+    en: {
+      title: 'Technology consulting',
+      description: 'Practical guidance to make the right technology decisions for your business.',
+      features: ['Technology roadmap', 'Architecture review and design', 'Digital transformation strategy', 'Security best practices', 'Technical training', 'Vendor and tool selection'],
+    },
   },
 ]
 
 export function ServicesPage() {
+  const { lang } = useLang()
+
   return (
     <>
       <Seo
         title="Servicios — Desarrollo a la medida, IA y Cloud | Auron Software"
-        description="Servicios de software de Auron: desarrollo a la medida con Django y React, inteligencia artificial predictiva, soluciones cloud, automatización e integración DGII e-CF."
+        description={lang === 'es'
+          ? 'Servicios de software de Auron: desarrollo a la medida con Django y React, inteligencia artificial predictiva, soluciones cloud, automatización e integración DGII e-CF.'
+          : 'Auron software services: custom development with Django and React, predictive AI, cloud solutions, automation and DGII e-CF integration.'}
         path="/services"
-        jsonLd={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Desarrollo de software a la medida',
-            serviceType: 'Software development',
-            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
-            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
-            url: 'https://auronsuite.com/services#custom',
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Inteligencia Artificial',
-            serviceType: 'AI / Machine learning',
-            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
-            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
-            url: 'https://auronsuite.com/services#ai',
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Soluciones Cloud',
-            serviceType: 'Cloud infrastructure',
-            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
-            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
-            url: 'https://auronsuite.com/services#cloud',
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Automatización',
-            serviceType: 'Business automation',
-            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
-            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
-            url: 'https://auronsuite.com/services#automation',
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Integración de sistemas',
-            serviceType: 'System integration',
-            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
-            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
-            url: 'https://auronsuite.com/services#integration',
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Consultoría tecnológica',
-            serviceType: 'Technology consulting',
-            provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
-            areaServed: { '@type': 'Country', name: 'Dominican Republic' },
-            url: 'https://auronsuite.com/services#consulting',
-          },
-        ]}
+        jsonLd={services.map((s) => ({
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: s[lang].title,
+          serviceType: s[lang].title,
+          provider: { '@type': 'Organization', name: 'Auron Software EIRL', url: 'https://auronsuite.com' },
+          areaServed: { '@type': 'Country', name: 'Dominican Republic' },
+          url: `https://auronsuite.com/services#${s.id}`,
+        }))}
       />
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
         <div className="absolute inset-0" style={{ background: 'var(--auron-gradient-1)' }} />
         <Container className="relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.05]">Servicios</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.05]">
+              {lang === 'es' ? 'Servicios' : 'Services'}
+            </h1>
             <p className="mt-6 text-lg md:text-xl max-w-xl text-[var(--auron-text-secondary)]" style={{ lineHeight: 1.7 }}>
-              Además de nuestros productos, ayudamos a las empresas con desarrollo a la medida, IA, automatización e integración — construido sobre el mismo stack que usamos nosotros.
+              {lang === 'es'
+                ? 'Además de nuestros productos, ayudamos a las empresas con desarrollo a la medida, IA, automatización e integración — construido sobre el mismo stack que usamos nosotros.'
+                : 'Beyond our products, we help businesses with custom development, AI, automation and integration — built on the same stack we use ourselves.'}
             </p>
           </div>
         </Container>
@@ -138,13 +155,19 @@ export function ServicesPage() {
 
       <section className="py-16 md:py-24 bg-[var(--auron-bg-secondary)] border-y border-[var(--auron-border-light)]">
         <Container className="text-center">
-          <SectionHeader label="Proceso" title="Cómo trabajamos" description="Un proceso simple y honesto: entender el negocio, diseñar la solución, construirla y desplegarla." />
+          <SectionHeader
+            label={lang === 'es' ? 'Proceso' : 'Process'}
+            title={lang === 'es' ? 'Cómo trabajamos' : 'How we work'}
+            description={lang === 'es'
+              ? 'Un proceso simple y honesto: entender el negocio, diseñar la solución, construirla y desplegarla.'
+              : 'A simple and honest process: understand the business, design the solution, build it and deploy it.'}
+          />
           <div className="grid sm:grid-cols-4 gap-6 mt-12 text-left">
             {[
-              { step: '01', title: 'Descubrir', desc: 'Aprendemos tu negocio, tus metas y tu panorama técnico.' },
-              { step: '02', title: 'Diseñar', desc: 'Arquitectura, UX y especificaciones técnicas.' },
-              { step: '03', title: 'Construir', desc: 'Desarrollo ágil con entrega continua.' },
-              { step: '04', title: 'Escalar', desc: 'Desplegar, monitorear y optimizar para crecer.' },
+              { step: '01', title: lang === 'es' ? 'Descubrir' : 'Discover', desc: lang === 'es' ? 'Aprendemos tu negocio, tus metas y tu panorama técnico.' : 'We learn your business, goals and technical landscape.' },
+              { step: '02', title: lang === 'es' ? 'Diseñar' : 'Design', desc: lang === 'es' ? 'Arquitectura, UX y especificaciones técnicas.' : 'Architecture, UX and technical specifications.' },
+              { step: '03', title: lang === 'es' ? 'Construir' : 'Build', desc: lang === 'es' ? 'Desarrollo ágil con entrega continua.' : 'Agile development with continuous delivery.' },
+              { step: '04', title: lang === 'es' ? 'Escalar' : 'Scale', desc: lang === 'es' ? 'Desplegar, monitorear y optimizar para crecer.' : 'Deploy, monitor and optimize to grow.' },
             ].map((step) => (
               <div key={step.step} className="p-6 rounded-2xl border border-[var(--auron-card-border)] bg-[var(--auron-card-bg)]">
                 <div className="text-3xl font-bold mb-2" style={{ color: 'var(--auron-accent-text)' }}>{step.step}</div>
@@ -161,9 +184,11 @@ export function ServicesPage() {
   )
 }
 
-function ServiceDetail({ service, index }: { service: typeof services[number]; index: number }) {
+function ServiceDetail({ service, index }: { service: Service; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { lang } = useLang()
+  const c = service[lang]
 
   return (
     <motion.div
@@ -178,10 +203,10 @@ function ServiceDetail({ service, index }: { service: typeof services[number]; i
         <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ background: 'var(--auron-gradient-accent-subtle)' }}>
           <service.icon className="w-7 h-7" style={{ color: 'var(--auron-accent-text)' }} />
         </div>
-        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--auron-text)]">{service.title}</h2>
-        <p className="mt-4 text-base text-[var(--auron-text-secondary)] leading-relaxed">{service.description}</p>
+        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--auron-text)]">{c.title}</h2>
+        <p className="mt-4 text-base text-[var(--auron-text-secondary)] leading-relaxed">{c.description}</p>
         <ul className="mt-6 grid sm:grid-cols-2 gap-3">
-          {service.features.map((f) => (
+          {c.features.map((f) => (
             <li key={f} className="flex items-start gap-3 text-sm text-[var(--auron-text-secondary)]">
               <CheckCircle2 className="w-4 h-4 mt-0.5 shrink-0" style={{ color: 'var(--auron-accent-text)' }} />
               {f}
@@ -190,7 +215,7 @@ function ServiceDetail({ service, index }: { service: typeof services[number]; i
         </ul>
         <div className="mt-8">
           <Button variant="primary" size="md" as="a" href="/contact">
-            Empezar <ArrowRight className="w-4 h-4" />
+            {lang === 'es' ? 'Empezar' : 'Get started'} <ArrowRight className="w-4 h-4" />
           </Button>
         </div>
       </div>

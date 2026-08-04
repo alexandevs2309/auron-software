@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { dictionaries, type Lang } from './translations'
 
+export type { Lang }
+
 interface I18nContextValue {
   lang: Lang
   setLang: (lang: Lang) => void

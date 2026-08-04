@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Section, SectionHeader } from './section'
+import { useLang } from '@/lib/i18n'
 
 const nodes = [
   { x: 150, y: 100, code: 'BE', name: 'Beauty Edition' },
@@ -12,17 +13,22 @@ const nodes = [
 export function CoreDiagram() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { lang } = useLang()
 
   return (
     <Section id="architecture">
       <SectionHeader
-        label="Plataforma"
-        title="Un núcleo, todas las Editions"
-        description="Cada Edition de AURON Suite nace de la misma plataforma compartida: autenticación, APIs, facturación DGII e-CF y seguridad en común."
+        label={lang === 'es' ? 'Plataforma' : 'Platform'}
+        title={lang === 'es' ? 'Un núcleo, todas las Editions' : 'One core, every Edition'}
+        description={lang === 'es'
+          ? 'Cada Edition de AURON Suite nace de la misma plataforma compartida: autenticación, APIs, facturación DGII e-CF y seguridad en común.'
+          : 'Every AURON Suite Edition comes from the same shared platform: common authentication, APIs, DGII e-CF invoicing and security.'}
       />
       <div ref={ref} className="relative">
         <div className="auron-dots absolute inset-0 rounded-3xl opacity-40" aria-hidden />
-        <svg viewBox="0 0 800 440" className="relative w-full h-auto" role="img" aria-label="Diagrama del núcleo de AURON Suite y sus Editions">
+        <svg viewBox="0 0 800 440" className="relative w-full h-auto" role="img" aria-label={lang === 'es'
+          ? 'Diagrama del núcleo de AURON Suite y sus Editions'
+          : 'Diagram of the AURON Suite core and its Editions'}>
           <defs>
             <linearGradient id="auron-core-grad" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="#1A56DB" />
@@ -66,7 +72,9 @@ export function CoreDiagram() {
           >
             <circle cx={400} cy={220} r={56} fill="url(#auron-core-grad)" />
             <text x={400} y={214} textAnchor="middle" fill="#ffffff" fontWeight="600" fontSize="17" fontFamily="inherit">Auron Core</text>
-            <text x={400} y={234} textAnchor="middle" fill="rgba(255,255,255,0.65)" fontSize="11" fontFamily="inherit">Núcleo compartido</text>
+            <text x={400} y={234} textAnchor="middle" fill="rgba(255,255,255,0.65)" fontSize="11" fontFamily="inherit">
+              {lang === 'es' ? 'Núcleo compartido' : 'Shared core'}
+            </text>
           </motion.g>
 
           {nodes.map((n, i) => (

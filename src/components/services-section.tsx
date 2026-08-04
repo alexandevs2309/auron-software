@@ -3,50 +3,66 @@ import { motion, useInView } from 'framer-motion'
 import { Code2, BrainCircuit, Cloud, Cog, GitBranch, HeadphonesIcon } from 'lucide-react'
 import { Section, SectionHeader } from './section'
 import { SpotlightCard } from './spotlight-card'
-
-const services = [
-  {
-    icon: Code2,
-    title: 'Desarrollo a la medida',
-    description: 'Aplicaciones web y SaaS a medida con Django, React y PostgreSQL, listas para escalar con tu negocio.',
-  },
-  {
-    icon: BrainCircuit,
-    title: 'Inteligencia Artificial',
-    description: 'Analítica predictiva para tu operación: proyección de ganancias, ventas y carga laboral con modelos ligeros.',
-  },
-  {
-    icon: Cloud,
-    title: 'Soluciones Cloud',
-    description: 'Despliegue contenedorizado con Docker y AWS. Migración, monitoreo y servicios gestionados.',
-  },
-  {
-    icon: Cog,
-    title: 'Automatización',
-    description: 'Reportes, notificaciones y recordatorios automáticos que eliminan tareas manuales del día a día.',
-  },
-  {
-    icon: GitBranch,
-    title: 'Integración de Sistemas',
-    description: 'Conecta tu software con APIs: facturación DGII e-CF, pasarelas de pago y sincronización de datos.',
-  },
-  {
-    icon: HeadphonesIcon,
-    title: 'Consultoría',
-    description: 'Asesoría técnica para digitalizar tu operación y elegir la arquitectura correcta.',
-  },
-]
+import { useLang } from '@/lib/i18n'
 
 export function ServicesSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { lang } = useLang()
+
+  const services = [
+    {
+      icon: Code2,
+      title: lang === 'es' ? 'Desarrollo a la medida' : 'Custom development',
+      description: lang === 'es'
+        ? 'Aplicaciones web y SaaS a medida con Django, React y PostgreSQL, listas para escalar con tu negocio.'
+        : 'Custom web and SaaS applications with Django, React and PostgreSQL, ready to scale with your business.',
+    },
+    {
+      icon: BrainCircuit,
+      title: lang === 'es' ? 'Inteligencia Artificial' : 'Artificial Intelligence',
+      description: lang === 'es'
+        ? 'Analítica predictiva para tu operación: proyección de ganancias, ventas y carga laboral con modelos ligeros.'
+        : 'Predictive analytics for your operation: profit, sales and workload forecasting with lightweight models.',
+    },
+    {
+      icon: Cloud,
+      title: lang === 'es' ? 'Soluciones Cloud' : 'Cloud Solutions',
+      description: lang === 'es'
+        ? 'Despliegue contenedorizado con Docker y AWS. Migración, monitoreo y servicios gestionados.'
+        : 'Containerized deployment with Docker and AWS. Migration, monitoring and managed services.',
+    },
+    {
+      icon: Cog,
+      title: lang === 'es' ? 'Automatización' : 'Automation',
+      description: lang === 'es'
+        ? 'Reportes, notificaciones y recordatorios automáticos que eliminan tareas manuales del día a día.'
+        : 'Automated reports, notifications and reminders that remove day-to-day manual tasks.',
+    },
+    {
+      icon: GitBranch,
+      title: lang === 'es' ? 'Integración de Sistemas' : 'System Integration',
+      description: lang === 'es'
+        ? 'Conecta tu software con APIs: facturación DGII e-CF, pasarelas de pago y sincronización de datos.'
+        : 'Connect your software with APIs: DGII e-CF invoicing, payment gateways and data sync.',
+    },
+    {
+      icon: HeadphonesIcon,
+      title: lang === 'es' ? 'Consultoría' : 'Consulting',
+      description: lang === 'es'
+        ? 'Asesoría técnica para digitalizar tu operación y elegir la arquitectura correcta.'
+        : 'Technical guidance to digitize your operation and choose the right architecture.',
+    },
+  ]
 
   return (
     <Section id="services">
       <SectionHeader
-        label="Servicios"
-        title="Más allá de las Editions"
-        description="Ayudamos a negocios que necesitan más que una Edition: desarrollo a la medida, IA, automatización, cloud e integración — construidos sobre el mismo stack de AURON Suite."
+        label={lang === 'es' ? 'Servicios' : 'Services'}
+        title={lang === 'es' ? 'Más allá de las Editions' : 'Beyond the Editions'}
+        description={lang === 'es'
+          ? 'Ayudamos a negocios que necesitan más que una Edition: desarrollo a la medida, IA, automatización, cloud e integración — construidos sobre el mismo stack de AURON Suite.'
+          : 'We help businesses that need more than an Edition: custom development, AI, automation, cloud and integration — built on the same AURON Suite stack.'}
       />
       <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {services.map((s, i) => (

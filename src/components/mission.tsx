@@ -3,33 +3,43 @@ import { motion, useInView } from 'framer-motion'
 import { Shield, Cpu, Users, Globe } from 'lucide-react'
 import { Section } from './section'
 import { SpotlightCard } from './spotlight-card'
-
-const values = [
-  {
-    icon: Shield,
-    title: 'Seguridad empresarial',
-    description: 'Infraestructura con cifrado de extremo a extremo. Tus datos están protegidos en cada capa.',
-  },
-  {
-    icon: Cpu,
-    title: 'Arquitectura unificada',
-    description: 'Construido sobre una plataforma común. Todos los productos comparten APIs, autenticación y datos.',
-  },
-  {
-    icon: Users,
-    title: 'Primero el cliente',
-    description: 'Equipo de soporte dedicado con SLA de uptime. Somos tu socio tecnológico a largo plazo.',
-  },
-  {
-    icon: Globe,
-    title: 'Hecho en RD',
-    description: 'Diseñado y operado desde República Dominicana, con datos locales y facturación DGII e-CF nativa.',
-  },
-]
+import { useLang } from '@/lib/i18n'
 
 export function Mission() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { lang } = useLang()
+
+  const values = [
+    {
+      icon: Shield,
+      title: lang === 'es' ? 'Seguridad empresarial' : 'Enterprise security',
+      description: lang === 'es'
+        ? 'Infraestructura con cifrado de extremo a extremo. Tus datos están protegidos en cada capa.'
+        : 'End-to-end encrypted infrastructure. Your data is protected at every layer.',
+    },
+    {
+      icon: Cpu,
+      title: lang === 'es' ? 'Arquitectura unificada' : 'Unified architecture',
+      description: lang === 'es'
+        ? 'Construido sobre una plataforma común. Todos los productos comparten APIs, autenticación y datos.'
+        : 'Built on a common platform. All products share APIs, authentication and data.',
+    },
+    {
+      icon: Users,
+      title: lang === 'es' ? 'Primero el cliente' : 'Customer first',
+      description: lang === 'es'
+        ? 'Equipo de soporte dedicado con SLA de uptime. Somos tu socio tecnológico a largo plazo.'
+        : 'Dedicated support team with uptime SLA. We are your long-term technology partner.',
+    },
+    {
+      icon: Globe,
+      title: lang === 'es' ? 'Hecho en RD' : 'Made in DR',
+      description: lang === 'es'
+        ? 'Diseñado y operado desde República Dominicana, con datos locales y facturación DGII e-CF nativa.'
+        : 'Designed and operated from the Dominican Republic, with local data and native DGII e-CF invoicing.',
+    },
+  ]
 
   return (
     <Section id="about">
@@ -42,7 +52,7 @@ export function Mission() {
             className="inline-block text-xs font-semibold tracking-widest uppercase mb-4"
             style={{ color: 'var(--auron-accent-text)' }}
           >
-            Por qué AURON Suite
+            {lang === 'es' ? 'Por qué AURON Suite' : 'Why AURON Suite'}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -50,9 +60,9 @@ export function Mission() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.1]"
           >
-            Una plataforma.
+            {lang === 'es' ? 'Una plataforma.' : 'One platform.'}
             <br />
-            Múltiples Editions.
+            {lang === 'es' ? 'Múltiples Editions.' : 'Multiple Editions.'}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -60,9 +70,9 @@ export function Mission() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-base md:text-lg text-[var(--auron-text-secondary)] leading-relaxed"
           >
-            AURON Suite es la plataforma que agrupa todas las Editions de Auron Software:
-            Beauty Edition, Restaurant OS, Health y Hospitality.
-            Cada Edition funciona sobre un núcleo compartido — datos, autenticación e infraestructura unificados.
+            {lang === 'es'
+              ? 'AURON Suite es la plataforma que agrupa todas las Editions de Auron Software: Beauty Edition, Restaurant OS, Health y Hospitality. Cada Edition funciona sobre un núcleo compartido — datos, autenticación e infraestructura unificados.'
+              : 'AURON Suite is the platform that groups all Auron Software Editions: Beauty Edition, Restaurant OS, Health and Hospitality. Every Edition runs on a shared core — unified data, authentication and infrastructure.'}
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -70,8 +80,9 @@ export function Mission() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-4 text-base md:text-lg text-[var(--auron-text-secondary)] leading-relaxed"
           >
-            Ya sea que necesites gestión para salones, un POS para restaurantes,
-            una plataforma clínica u hotelera — AURON Suite tiene una Edition para tu rubro.
+            {lang === 'es'
+              ? 'Ya sea que necesites gestión para salones, un POS para restaurantes, una plataforma clínica u hotelera — AURON Suite tiene una Edition para tu rubro.'
+              : 'Whether you need salon management, a restaurant POS, a clinical or hotel platform — AURON Suite has an Edition for your business.'}
           </motion.p>
         </div>
 

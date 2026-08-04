@@ -215,18 +215,6 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 180px 180px;
 }
 
-@keyframes auron-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.auron-marquee-track {
-  animation: auron-marquee 32s linear infinite;
-}
-.auron-marquee-track:hover {
-  animation-play-state: paused;
-}
-
 .auron-dots {
   background-image: radial-gradient(var(--auron-border) 1px, transparent 1px);
   background-size: 26px 26px;

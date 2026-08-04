@@ -1,11 +1,9 @@
 import { Hero } from '../components/hero'
-import { Marquee } from '../components/marquee'
 import { Metrics } from '../components/metrics'
 import { ProductsSection } from '../components/products-section'
 import { AISection } from '../components/ai-section'
 import { Mission } from '../components/mission'
 import { CoreDiagram } from '../components/core-diagram'
-import { Industries } from '../components/industries'
 import { ServicesSection } from '../components/services-section'
 import { Faq } from '../components/faq'
 import { CTA } from '../components/cta'
@@ -50,13 +48,11 @@ export function HomePage() {
         }}
       />
       <Hero />
-      <Marquee />
       <Metrics />
       <ProductsSection />
       <AISection />
       <Mission />
       <CoreDiagram />
-      <Industries />
       <ServicesSection />
       <Faq />
       <CTA />

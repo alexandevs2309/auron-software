@@ -3,10 +3,10 @@ import { motion, useInView } from 'framer-motion'
 import { Section, SectionHeader } from './section'
 
 const nodes = [
-  { x: 150, y: 100, code: 'BE', name: 'Beauty Edition', status: 'En operación', statusColor: 'var(--auron-accent)' },
-  { x: 650, y: 100, code: 'RE', name: 'Restaurant Edition', status: 'En desarrollo', statusColor: 'var(--auron-gold)' },
-  { x: 150, y: 320, code: 'HO', name: 'Hospitality Edition', status: 'En desarrollo', statusColor: 'var(--auron-gold)' },
-  { x: 650, y: 320, code: 'ME', name: 'Medical Edition', status: 'Planeado', statusColor: 'var(--auron-badge-planned)' },
+  { x: 150, y: 100, code: 'BE', name: 'Beauty Edition' },
+  { x: 650, y: 100, code: 'RE', name: 'Restaurant Edition' },
+  { x: 150, y: 320, code: 'HO', name: 'Hospitality Edition' },
+  { x: 650, y: 320, code: 'ME', name: 'Medical Edition' },
 ]
 
 export function CoreDiagram() {
@@ -80,7 +80,6 @@ export function CoreDiagram() {
               <circle cx={n.x} cy={n.y} r={30} fill="none" stroke="var(--auron-accent)" strokeOpacity="0.12" strokeWidth="8" />
               <text x={n.x} y={n.y + 5} textAnchor="middle" fill="var(--auron-text)" fontWeight="600" fontSize="15" fontFamily="inherit">{n.code}</text>
               <text x={n.x} y={n.y + 56} textAnchor="middle" fill="var(--auron-text)" fontWeight="500" fontSize="13" fontFamily="inherit">{n.name}</text>
-              <text x={n.x} y={n.y + 74} textAnchor="middle" fill={n.statusColor} fontSize="10.5" fontFamily="inherit">{n.status}</text>
             </motion.g>
           ))}
         </svg>

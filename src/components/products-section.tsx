@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, Building2, UtensilsCrossed, Hotel, HeartPulse, ShoppingBag, Sparkles } from 'lucide-react'
+import { ArrowRight, Building2, UtensilsCrossed, Hotel, HeartPulse, ShoppingBag, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Section, SectionHeader } from './section'
 import { Button } from './button'
 import { SpotlightCard } from './spotlight-card'
 import { cn } from '@/lib/utils'
-import { getProductConfig, getProductHref, isProductExternal } from '@/config/products'
+import { getProductHref, isProductExternal } from '@/config/products'
 
 interface Product {
   id: string
@@ -16,8 +16,6 @@ interface Product {
   features: string[]
   gradient: string
 }
-
-const statusOf = (id: string) => getProductConfig(id)?.status ?? 'planned'
 
 const products: Product[] = [
   {
@@ -62,25 +60,6 @@ const products: Product[] = [
   },
 ]
 
-const statusConfig: Record<'live' | 'dev' | 'planned', { label: string; className: string }> = {
-  live: { label: 'En operación', className: 'bg-[var(--auron-accent)] text-white border-transparent' },
-  dev: { label: 'En desarrollo', className: 'bg-[var(--auron-gold)]/10 text-[var(--auron-badge-dev)] border-[var(--auron-badge-dev)]/20' },
-  planned: { label: 'Planeado', className: 'bg-[var(--auron-badge-planned)]/10 text-[var(--auron-badge-planned)] border-[var(--auron-badge-planned)]/20' },
-}
-
-function StatusBadge({ status }: { status: 'live' | 'dev' | 'planned' }) {
-  const cfg = statusConfig[status]
-  return (
-    <span className={cn(
-      'inline-block text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full border',
-      'transition-transform duration-200 hover:scale-105 cursor-default',
-      cfg.className,
-    )}>
-      {cfg.label}
-    </span>
-  )
-}
-
 function CardBody({ p }: { p: Product }) {
   const href = getProductHref(p.id)
   const external = isProductExternal(p.id)
@@ -93,7 +72,6 @@ function CardBody({ p }: { p: Product }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3 flex-wrap">
             <h3 className="text-xl font-semibold text-[var(--auron-text)]">{p.name}</h3>
-            <StatusBadge status={statusOf(p.id)} />
           </div>
           <p className="mt-1 text-sm text-[var(--auron-text-secondary)] leading-relaxed">{p.description}</p>
         </div>
@@ -101,7 +79,7 @@ function CardBody({ p }: { p: Product }) {
       <ul className="space-y-2 mb-6">
         {p.features.map((f) => (
           <li key={f} className="flex items-center gap-2.5 text-sm text-[var(--auron-text-secondary)]">
-            <Sparkles className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--auron-accent-text)' }} />
+            <Check className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--auron-accent-text)' }} />
             {f}
           </li>
         ))}
@@ -136,12 +114,11 @@ function FeaturedCardBody({ p }: { p: Product }) {
     <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start h-full">
       <div className="lg:flex-1 lg:min-w-0">
         <div className="flex items-center gap-4 mb-4">
-          <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0" style={{ background: p.gradient, boxShadow: '0 0 24px var(--auron-accent-glow)' }}>
+          <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0" style={{ background: p.gradient }}>
             <p.icon className="w-7 h-7 text-white" />
           </div>
           <div className="flex items-center gap-3 flex-wrap">
             <h3 className="text-2xl font-semibold text-[var(--auron-text)]">{p.name}</h3>
-            <StatusBadge status={statusOf(p.id)} />
           </div>
         </div>
         <p className="text-sm text-[var(--auron-text-secondary)] leading-relaxed mb-6 lg:max-w-md">{p.description}</p>
@@ -168,7 +145,7 @@ function FeaturedCardBody({ p }: { p: Product }) {
       <ul className="grid sm:grid-cols-2 gap-2.5 lg:w-[45%] shrink-0">
         {p.features.map((f) => (
           <li key={f} className="flex items-center gap-2.5 text-sm text-[var(--auron-text-secondary)]">
-            <Sparkles className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--auron-accent-text)' }} />
+            <Check className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--auron-accent-text)' }} />
             {f}
           </li>
         ))}
@@ -198,9 +175,9 @@ export function ProductsSection() {
   return (
     <Section id="products">
       <SectionHeader
-        label="Editions"
+        label="Plataforma"
         title="Una Edition para cada rubro"
-        description="Cada Edition de AURON Suite se construye sobre una base común: confiabilidad, seguridad y una experiencia de usuario de clase mundial."
+        description="Cada Edition de AURON Suite se construye sobre un núcleo compartido: autenticación, facturación DGII e-CF nativa y operación local sin internet."
       />
       <div ref={ref} className="grid gap-6 md:gap-8 lg:grid-cols-3">
         {render(products[0], 0, true)}

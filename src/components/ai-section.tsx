@@ -76,7 +76,7 @@ export function AISection() {
             </div>
             <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border" style={{ color: 'var(--auron-accent-text)', borderColor: 'var(--auron-border)' }}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--auron-accent)' }} />
-              IA activa
+              Modelo en producción
             </span>
           </div>
 

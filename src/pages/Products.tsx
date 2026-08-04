@@ -7,7 +7,6 @@ import { Button } from '../components/button'
 import { ProductMockup } from '../components/product-mockup'
 import { Seo } from '../components/seo'
 import { CTA } from '../components/cta'
-import { cn } from '@/lib/utils'
 import { getProductConfig, getProductHref, isProductExternal } from '@/config/products'
 
 interface Product {
@@ -19,26 +18,6 @@ interface Product {
   features: string[]
   gradient: string
   mockupEyebrow: string
-}
-
-const statusOf = (id: string) => getProductConfig(id)?.status ?? 'planned'
-const statusConfig: Record<'live' | 'dev' | 'planned', { label: string; className: string }> = {
-  live: { label: 'En operación', className: 'bg-[var(--auron-accent)] text-white border-transparent' },
-  dev: { label: 'En desarrollo', className: 'bg-[var(--auron-gold)]/10 text-[var(--auron-badge-dev)] border-[var(--auron-badge-dev)]/20' },
-  planned: { label: 'Planeado', className: 'bg-[var(--auron-badge-planned)]/10 text-[var(--auron-badge-planned)] border-[var(--auron-badge-planned)]/20' },
-}
-
-function StatusBadge({ status }: { status: 'live' | 'dev' | 'planned' }) {
-  const cfg = statusConfig[status]
-  return (
-    <span className={cn(
-      'inline-block text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full border',
-      'transition-transform duration-200 hover:scale-105 cursor-default',
-      cfg.className,
-    )}>
-      {cfg.label}
-    </span>
-  )
 }
 
 const products: Product[] = [
@@ -199,7 +178,6 @@ export function ProductsPage() {
                 </span>
                 <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--auron-text)] flex items-center gap-3 flex-wrap">
                   {p.name}
-                  <StatusBadge status={statusOf(p.id)} />
                 </h2>
                 <p className="mt-4 text-base text-[var(--auron-text-secondary)] leading-relaxed">{p.description}</p>
                 <ul className="mt-6 space-y-3">
@@ -211,20 +189,20 @@ export function ProductsPage() {
                   ))}
                 </ul>
                 <div className="mt-8">
-                  {statusOf(p.id) === 'live' ? (
+                  {isProductExternal(p.id) ? (
                     <Button
                       variant="primary"
                       size="md"
                       as="a"
                       href={getProductHref(p.id)}
-                      target={isProductExternal(p.id) ? '_blank' : undefined}
-                      rel={isProductExternal(p.id) ? 'noopener noreferrer' : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Abrir {p.name} <ArrowRight className="w-4 h-4" />
                     </Button>
                   ) : (
-                    <Button variant="secondary" size="md" as="a" href="/coming-soon">
-                      Abrir {p.name} <ArrowRight className="w-4 h-4" />
+                    <Button variant="secondary" size="md" as="a" href="/contact">
+                      Solicitar información <ArrowRight className="w-4 h-4" />
                     </Button>
                   )}
                 </div>

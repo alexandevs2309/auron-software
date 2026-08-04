@@ -1,4 +1,4 @@
-import { LayoutDashboard, Boxes, Briefcase, Users, BarChart3, Search, Bell, Building2, UtensilsCrossed, Hotel, HeartPulse, TrendingUp, Clock, Check } from 'lucide-react'
+import { LayoutDashboard, Boxes, Briefcase, Users, BarChart3, Search, Bell, Building2, UtensilsCrossed, Hotel, HeartPulse, TrendingUp } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -10,17 +10,17 @@ const navItems = [
 ]
 
 const kpis = [
-  { label: 'Productos en operación', value: '2' },
-  { label: 'Verticales en desarrollo', value: '2' },
-  { label: 'Cumplimiento DGII e-CF', value: '100%' },
-  { label: 'Hecho en', value: 'RD' },
+  { label: 'Cumplimiento e-CF DGII', value: '100%' },
+  { label: 'Operación sin internet', value: 'Sí' },
+  { label: 'Ediciones de la suite', value: '4' },
+  { label: 'Datos y desarrollo', value: 'RD' },
 ]
 
 const portfolio = [
-  { icon: Building2, name: 'Beauty Edition', status: 'En operación', live: true, gradient: 'linear-gradient(135deg, #1A56DB, #123F9E)' },
-  { icon: UtensilsCrossed, name: 'Restaurant Edition', status: 'En desarrollo', live: false, gradient: 'linear-gradient(135deg, #10b981, #059669)' },
-  { icon: Hotel, name: 'Hospitality Edition', status: 'En desarrollo', live: false, gradient: 'linear-gradient(135deg, #D97706, #9A5B0A)' },
-  { icon: HeartPulse, name: 'Medical Edition', status: 'Planeado', live: false, gradient: 'linear-gradient(135deg, #f43f5e, #e11d48)' },
+  { icon: Building2, name: 'Beauty Edition', gradient: 'linear-gradient(135deg, #1A56DB, #123F9E)' },
+  { icon: UtensilsCrossed, name: 'Restaurant Edition', gradient: 'linear-gradient(135deg, #10b981, #059669)' },
+  { icon: Hotel, name: 'Hospitality Edition', gradient: 'linear-gradient(135deg, #D97706, #9A5B0A)' },
+  { icon: HeartPulse, name: 'Medical Edition', gradient: 'linear-gradient(135deg, #f43f5e, #e11d48)' },
 ]
 
 const bars = [42, 58, 46, 70, 62, 84, 76, 92, 68, 54, 80, 88]
@@ -98,17 +98,6 @@ export function HubMockup({ gradient = 'linear-gradient(135deg, #1A56DB, #123F9E
                       <p.icon className="w-3 h-3 text-white" />
                     </div>
                     <span className="flex-1 min-w-0 truncate text-[10px] font-medium text-[var(--auron-text)]">{p.name}</span>
-                    <span
-                      className={cn(
-                        'inline-flex items-center gap-1 text-[9px] font-semibold px-1.5 py-0.5 rounded-full border',
-                        p.live
-                          ? 'border-transparent bg-[var(--auron-accent)] text-white'
-                          : 'border-[var(--auron-gold)]/30 text-[var(--auron-badge-dev)]',
-                      )}
-                    >
-                      {p.live ? <Check className="w-2 h-2" /> : <Clock className="w-2 h-2" />}
-                      {p.status}
-                    </span>
                   </div>
                 ))}
               </div>

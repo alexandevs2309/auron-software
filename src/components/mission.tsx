@@ -23,7 +23,7 @@ const values = [
   {
     icon: Globe,
     title: 'Hecho en RD',
-    description: 'Diseñado y operado desde República Dominicana, con estándares de ingeniería de clase mundial.',
+    description: 'Diseñado y operado desde República Dominicana, con datos locales y facturación DGII e-CF nativa.',
   },
 ]
 
@@ -52,9 +52,7 @@ export function Mission() {
           >
             Una plataforma.
             <br />
-            <span className="font-display italic" style={{ color: 'var(--auron-accent-text)' }}>
-              Múltiples Editions.
-            </span>
+            Múltiples Editions.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

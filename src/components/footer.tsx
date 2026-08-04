@@ -47,7 +47,8 @@ export function Footer() {
               <span className="font-semibold text-base text-[var(--auron-text)]">AURON Suite</span>
             </Link>
             <p className="text-sm text-[var(--auron-text-secondary)] leading-relaxed max-w-xs">
-              Software empresarial para negocios modernos. Construyendo el futuro de la tecnología de negocio.
+              Plataformas de gestión para negocios de servicio en República Dominicana. Facturación electrónica
+              DGII e-CF nativa y operación local sin depender de internet.
             </p>
           </div>
           {Object.entries(footerLinks).map(([title, links]) => (
@@ -76,8 +77,14 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-16 pt-8 border-t border-[var(--auron-border-light)] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[var(--auron-text-tertiary)]">&copy; {new Date().getFullYear()} Auron Suite EIRL. Todos los derechos reservados.</p>
+        <div className="mt-12 pt-8 border-t border-[var(--auron-border-light)] text-center">
+          <p className="text-xs text-[var(--auron-text-tertiary)]">
+            Facturación electrónica e-CF integrada con la DGII · Operación local sin dependencia de internet
+          </p>
+        </div>
+        <div className="mt-8 pt-8 border-t border-[var(--auron-border-light)] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-[var(--auron-text-tertiary)]">&copy; {new Date().getFullYear()} Auron Software EIRL. Todos los derechos reservados.</p>
+          <p className="text-xs text-[var(--auron-text-tertiary)]">Hecho en República Dominicana</p>
         </div>
       </Container>
     </footer>

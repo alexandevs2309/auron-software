@@ -3,10 +3,10 @@ import { motion, useInView, animate, useReducedMotion } from 'framer-motion'
 import { Section } from './section'
 
 const metrics = [
-  { value: '2', label: 'Productos en operación' },
-  { value: '2', label: 'Verticales en desarrollo' },
-  { value: '100%', label: 'Cumplimiento DGII e-CF' },
-  { value: 'RD', label: 'Hecho en República Dominicana' },
+  { value: '100%', label: 'Cumplimiento fiscal DGII e-CF' },
+  { value: '0', label: 'Dependencia de internet para operar' },
+  { value: 'RD', label: 'Datos y desarrollo en República Dominicana' },
+  { value: 'e-CF', label: 'Facturación electrónica nativa' },
 ]
 
 function MetricValue({ value, active, delay }: { value: string; active: boolean; delay: number }) {
@@ -67,7 +67,7 @@ export function Metrics() {
             transition={{ duration: 0.5, delay: i * 0.1 }}
             className="text-center"
           >
-            <div className="text-3xl sm:text-4xl md:text-5xl font-bold" style={{ color: 'var(--auron-accent-text)', textShadow: '0 0 30px var(--auron-accent-glow)' }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold" style={{ color: 'var(--auron-accent-text)' }}>
               <MetricValue value={m.value} active={isInView} delay={0.2 + i * 0.12} />
             </div>
             <div className="text-sm text-[var(--auron-text-secondary)] mt-1">{m.label}</div>

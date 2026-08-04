@@ -15,7 +15,7 @@ const faqs: FaqItem[] = [
   {
     question: '¿Cuánto cuesta cada producto?',
     answer:
-      'Cada producto de Auron tiene su propia landing page con su plan, precio y condiciones. En esta web presentamos la empresa; para ver el precio de un producto concreto visita su página de producto y agenda una demostración.',
+      'Cada edición tiene su propia página de producto con su plan, precio y condiciones. En esta web presentamos la empresa y la plataforma; para conocer los detalles de la edición de tu sector, escríbenos a través del formulario de contacto.',
   },
   {
     question: '¿Incluye facturación electrónica DGII?',
@@ -30,7 +30,7 @@ const faqs: FaqItem[] = [
   {
     question: '¿Cómo pruebo un producto?',
     answer:
-      'El primer paso es agendar una demostración: te mostramos el producto con datos de tu tipo de negocio, y luego defines el plan, la fecha de arranque y la migración.',
+      'Escríbenos por el formulario de contacto y coordinamos una sesión en la que te mostramos la edición de tu rubro con datos de tu tipo de negocio. Luego defines el plan, la fecha de arranque y la migración de tu operación.',
   },
   {
     question: '¿Puedo usarlo en varios negocios o sucursales?',

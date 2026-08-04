@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Container } from './container'
 import { Button } from './button'
@@ -10,6 +10,9 @@ import { useTheme } from '@/lib/theme'
 const links = [
   { label: 'Productos', href: '/products' },
   { label: 'Servicios', href: '/services' },
+]
+
+const companyLinks = [
   { label: 'Nosotros', href: '/about' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contacto', href: '/contact' },
@@ -81,15 +84,42 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+
+            <div className="group relative">
+              <button
+                type="button"
+                className="auron-focus-ring cursor-pointer flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 text-[var(--auron-text-secondary)] hover:text-[var(--auron-text)] hover:bg-[var(--auron-bg-secondary)]"
+                aria-haspopup="true"
+                aria-expanded={false}
+              >
+                Compañía
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
+                <div className="w-48 rounded-xl border border-[var(--auron-card-border)] bg-[var(--auron-card-bg)] shadow-lg py-2">
+                  {companyLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className={cn(
+                        'auron-focus-ring block px-4 py-2.5 text-sm font-medium transition-colors',
+                        pathname === link.href
+                          ? 'text-[var(--auron-accent-text)]'
+                          : 'text-[var(--auron-text-secondary)] hover:text-[var(--auron-text)] hover:bg-[var(--auron-bg-secondary)]',
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
             {themeButton}
-            <Button variant="secondary" size="sm" as="a" href="/products">
-              Editions
-            </Button>
             <Button variant="primary" size="sm" as="a" href="/contact">
-              Agendar demo
+              Contáctanos
             </Button>
           </div>
 
@@ -114,7 +144,7 @@ export function Navbar() {
           >
             <Container className="py-6">
               <div className="flex flex-col gap-1">
-                {links.map((link) => (
+                {[...links, ...companyLinks].map((link) => (
                   <Link
                     key={link.href}
                     to={link.href}
@@ -131,11 +161,8 @@ export function Navbar() {
               </div>
               <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-[var(--auron-border-light)]">
                 {themeButton}
-                <Button variant="secondary" size="md" as="a" href="/products" className="w-full">
-                  Editions
-                </Button>
                 <Button variant="primary" size="md" as="a" href="/contact" className="w-full">
-                  Agendar demo
+                  Contáctanos
                 </Button>
               </div>
             </Container>

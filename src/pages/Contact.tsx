@@ -56,8 +56,8 @@ export function ContactPage() {
   return (
     <>
       <Seo
-        title="Contacto — Agenda una demostración | Auron Software"
-        description="Contáctanos para agendar una demostración de nuestros productos o conversar sobre un proyecto a la medida. Respondemos en 24 horas."
+        title="Contacto — Auron Software"
+        description="Contáctanos para conocer las plataformas de Auron Software, hacer una consulta de producto o conversar sobre un proyecto a la medida. Respondemos en 24 horas."
         path="/contact"
       />
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">

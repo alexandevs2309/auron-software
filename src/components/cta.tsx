@@ -25,14 +25,15 @@ export function CTA() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--auron-text)] leading-[1.1]">
-            ¿Listo para transformar tu negocio?
+            Hablemos de tu operación
           </h2>
           <p className="mt-6 text-base sm:text-lg md:text-xl max-w-xl mx-auto" style={{ color: 'var(--auron-text-secondary)', lineHeight: 1.7 }}>
-            Agenda una demostración con nuestro equipo y descubre cómo Auron Software puede impulsar tu operación.
+            Cuéntanos sobre tu negocio y conoce cómo las plataformas de Auron Software operan tu día a día,
+            con facturación electrónica DGII e-CF nativa y sin depender de internet.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button variant="primary" size="lg" as="a" href="/contact">
-              Agendar Demo <ArrowRight className="w-4 h-4" />
+              Contáctanos <ArrowRight className="w-4 h-4" />
             </Button>
             <Button variant="secondary" size="lg" as="a" href="/services">
               Ver Servicios
